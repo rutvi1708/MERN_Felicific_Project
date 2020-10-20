@@ -102,3 +102,9 @@ dist
 
 # TernJS port file
 .tern-port
+
+SDP_frontend/node_modules
+SDP_frontend/frontend/node_modules 
+SDP_backend/node_modules
+SDP_backend/.vscode
+SDP_backend/config/default.js
