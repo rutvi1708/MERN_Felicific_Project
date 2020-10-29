@@ -26,9 +26,9 @@ function Navbar(props) {
           <li className="navbar-item"> 
                     <Link to="/cultural" className="nav-link"> Cultural Night </Link>
                     </li>{' '}
-                    <li className="navbar-item">
+                    {/* <li className="navbar-item">
                     <Link to ="/profile/:id" className="nav-link"> My Profile   </Link>
-                    </li>
+                    </li> */}
                     <li className="navbar-item">
                     <Link to="/contact" className="nav-link"> Contact Us  </Link>
                     </li>
