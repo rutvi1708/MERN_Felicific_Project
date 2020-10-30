@@ -4,10 +4,11 @@ import './cultural-event.css';
 export default class CulturalList extends Component{
     render(){
         return (
-               <div className="container-flex">
+               <div className="container-flex" style={{marginTop: '100px'}}>
                     <div className="row text-center" style={{minHeight: 'calc(100vh - 86px)',alignItems: 'center'}}>
                     <div className="col-12 col-md-6">
-                        <div className="logo-image1"></div>
+                        {/* <div className="logo-image1" alt= "Cultural Night"></div> */}
+                        <div className="logo-image1" alt="Responsive image"></div>
                         </div>
                     <div className="col-md-5 col-12 nunito" style={{verticalAlign: 'middle'}}>
                 <h1 className="display-2 sans pb-5 cn">Cultural Night</h1>

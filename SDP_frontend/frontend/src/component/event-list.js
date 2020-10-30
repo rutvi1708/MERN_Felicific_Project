@@ -1,13 +1,14 @@
 import React,  { Component } from 'react' ;
 import { Button } from 'reactstrap';
 //import {browserHistory } from 'react-dom';
-import {Link} from 'react-router-dom';
+import {Link,useHistory} from 'react-router-dom';
 import './event-list.css';
 
 
 export default class EventList extends Component{
     
     render(){
+        
         return (
             <div className="hero-image">
             <div className="container text-center d-flex align-items-center flex-column justify-content-center" id="cont-ind">
@@ -20,8 +21,9 @@ export default class EventList extends Component{
                                 <div className="row f-button">
                                     <div className="col-12">
                                         <div className="row ">            
-                                            <div className="col-md-1 col-0">&nbsp;</div>                      
-                                            <div className="col-md-3 col-4 ml-0 ml-md-4"><button onclick="document.location.href='day1.html';">Day 1</button></div>                      
+                                            <div className="col-md-1 col-0">&nbsp;</div>     
+                                            <Link to ='/day1event'>               
+                                            <div className="col-md-3 col-4 ml-0 ml-md-4"><button onclick={()=>this.props.history.push('/day1event')}>Day 1</button></div></Link>                      
                                             <div className="col-md-3 col-4"><button onclick="document.location.href='day2.html';">Day 2</button></div>
                                             <div className="col-md-3 col-4"><button onclick="document.location.href='day3.html';">Day 3</button></div>                                  
                                         </div>

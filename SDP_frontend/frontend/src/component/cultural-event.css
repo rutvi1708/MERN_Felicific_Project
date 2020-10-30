@@ -30,8 +30,11 @@ Background
 }
 
 .logo-image1{
-    background: url('../img/cn.svg') ;
-    alt: "Cultural Night";
+    background-image: url('../img/cn.png') ;
+    height: 100 px;
+    width: 100px;
+    object-fit: contain;
+   
 }
 
 .hero-image {    
