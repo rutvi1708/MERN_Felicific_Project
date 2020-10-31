@@ -22,11 +22,22 @@ import AddEvent from "./component/addevent";
 import AdminEvent from "./component/admin";
 import EditEvent from "./component/editevent";
 import Details from "./component/detailpage";
+import Form1 from "./component/form/form1";
+import Form2 from "./component/form/form2";
+import Form3 from "./component/form/form3";
+import Form4 from "./component/form/form4";
+import Form5 from "./component/form/form5";
+import Form6 from "./component/form/form6";
+import Form7 from "./component/form/form7";
+import Form8 from "./component/form/form8";
+import Payment from "./component/payment";
+
 
 //Redux
 import { Provider } from 'react-redux';
 import store from './store';
 import './App.css';
+import { Form } from 'reactstrap';
 
 if(localStorage.token) {
     setAuthToken(localStorage.token);
@@ -42,11 +53,15 @@ const App = () => {
         <Fragment>
           <Navbar />
           <Route exact path='/' component={Landing} />
+          <section className='container'>
             <Alert />
+            <Switch>
+              <Route exact path='/register' component={Register} />
+              <Route exact path='/login' component={Login} />
+            </Switch>
+          </section>
         </Fragment>
-        <Route exact path='/register' component={Register} />
-        <Route exact path='/login' component={Login} />
-        <Route path="/home" exact component ={EventList}/>
+        <Route  exact path="/home" component ={EventList}/>
         <Route path="/cultural" component ={Cultural}/>
         <Route path="/profile/:id" component ={Profile}/>
         <Route path="/contact" component ={Contact}/>
@@ -60,6 +75,15 @@ const App = () => {
         <Route path="/admin/adminevent" component={AdminEvent} />
         <Route path="/editevent/:id" component={EditEvent} />
         <Route path="/details/:id" component={Details} />
+        <Route path="/register1/:id" component={Form1}/>
+        <Route path="/register2/:id" component={Form2}/>
+        <Route path="/register3/:id" component={Form3}/>
+        <Route path="/register4/:id" component={Form4}/>
+        <Route path="/register5/:id" component={Form5}/>
+        <Route path="/register6/:id" component={Form6}/>
+        <Route path="/register7/:id" component={Form7}/>
+        <Route path="/register8/:id" component={Form8}/>
+        <Route path="/payment" component={Payment}/>
       </Router>
     </Provider>
 

@@ -20,9 +20,9 @@ const Login = ({ login, isAuthenticated }) => {
     login(email, password);
   };
   //Redirect if logged in
-  if (isAuthenticated) {
-    return <Redirect to='/login' />;
-  }
+  //if (isAuthenticated) {
+    //return <Redirect to='/home' />;
+  //}
   return (
     <Fragment>
       <h1 className='large text-primary'>Login</h1>

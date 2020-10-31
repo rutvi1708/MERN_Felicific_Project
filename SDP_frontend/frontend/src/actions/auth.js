@@ -74,11 +74,11 @@ export const register = (
       type: REGISTER_SUCCESS,
       payload: res.data,
     });
-    const res1 = await axios.get('http://localhost:5000/api/auth');
-    dispatch({
-      type: USER_LOADED,
-      payload: res1.data,
-    });
+    // const res1 = await axios.get('http://localhost:5000/api/auth');
+    // dispatch({
+    //   type: USER_LOADED,
+    //   payload: res1.data,
+    // });
 
 
     dispatch(loadUser());
