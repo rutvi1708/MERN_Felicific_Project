@@ -24,19 +24,19 @@ export default class EventList extends Component{
 
                         <div className='mx-auto'>
                     
-                            <Link to="/day1event" > <Button type="button" class="btn btn-outline-light">Day 1</Button></Link>
+                            <Link to="/day1event" > <Button type="button" className="btn btn-outline-light">Day 1</Button></Link>
             
-                            <Link to="/day2event"><Button type="button" class="btn btn-outline-light">Day 2</Button></Link><br/><br/><br/>
+                            <Link to="/day2event"><Button type="button" className="btn btn-outline-light">Day 2</Button></Link><br/><br/><br/>
        
                             <div style={{marginLeft:'46px'}}>
 
-                            <Link to="/day3event"><Button type="button" class="btn btn-outline-light">Day 3</Button></Link>{' '}<br/><br/><br/>
+                            <Link to="/day3event"><Button type="button" className="btn btn-outline-light">Day 3</Button></Link>{' '}<br/><br/><br/>
 
                             </div>
     
-                            <Link to="/day4event"><Button type="button" class="btn btn-outline-light">Day 4</Button></Link>
+                            <Link to="/day4event"><Button type="button" className="btn btn-outline-light">Day 4</Button></Link>
      
-                            <Link to="/day5event"><Button type="button" class="btn btn-outline-light">Day 5</Button></Link> 
+                            <Link to="/day5event"><Button type="button" className="btn btn-outline-light">Day 5</Button></Link> 
 
                         </div>
                     
