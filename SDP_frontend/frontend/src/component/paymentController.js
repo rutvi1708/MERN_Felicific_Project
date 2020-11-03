@@ -4,10 +4,12 @@ import { connect } from "react-redux";
 
 class Checkout extends Component {
 
-  // state = {
-  //   amount: 1
-  // };
-
+  state = {
+    amount: null
+  };
+componentDidMount() {
+  this.setState({amount:localStorage.getItem("amount")})
+}
   constructor() {
     super()
     this.openCheckout = this.openCheckout.bind(this);
@@ -18,7 +20,7 @@ class Checkout extends Component {
   openCheckout() {
     let options = {
       "key": "rzp_live_9l5GYyl4yGK5Pq",
-      "amount": 1*100, // 2000 paise = INR 20, amount in paisa
+      "amount": this.state.amount*100, // 2000 paise = INR 20, amount in paisa
       "name": "Pranav",
       "description": "Purchase Description",
       "image": "/your_logo.png",
@@ -44,7 +46,7 @@ class Checkout extends Component {
   render () {
     return (
       <div>
-        <Button onClick={this.openCheckout}>Pay Rs. {this.props.Amount}</Button> 
+        <Button onClick={this.openCheckout}>Pay Rs. {this.state.amount}</Button> 
       </div>
     )
   }
