@@ -95,7 +95,10 @@ router.post(
                     //res.status(200).send('A verificatioon email has been sent to ' + user.email + '.');
                 });
           console.log('afterjwt');
-         
+         //User.findById(user.id, (err, doc)=>{
+           // if(err) throw err;
+            
+         //})
         }
       );
     } catch (err) {
