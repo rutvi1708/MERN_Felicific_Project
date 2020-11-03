@@ -1,14 +1,19 @@
-import React,  { Component } from 'react';
-import { Button } from 'reactstrap';
-import { Link } from 'react-router-dom';
-
-export default class Payment extends Component{
-    render(){
+import React, { Component } from 'react';
+import Checkout from './paymentController';
+import { connect } from "react-redux"
+class Payment extends Component {
+    render() {
         return (
             <div>
-               <p>Make Payment</p>
-                    <Link to ="/paymentController"><Button size="lg"  color="dark">Proceed to Pay</Button></Link>
-             </div>    
+                <p>Make Payment</p>
+                <Checkout />
+            </div>
         )
     }
 }
+const mapStateToProps = (state) => {
+    return {
+        Amount: state.Amount
+    };
+};
+export default connect(mapStateToProps, null)(Payment);
