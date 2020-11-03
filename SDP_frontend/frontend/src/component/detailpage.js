@@ -53,6 +53,7 @@ import img from '../img/back2.jpg'
               req_participant:response.data.req_participant,
              })
             this.props.addAmount(response.data.amount)
+            localStorage.setItem('amount', response.data.amount);
           })
           .catch((error) => {
             console.log(error);
@@ -153,7 +154,6 @@ import img from '../img/back2.jpg'
                   
                   <tr>CONTACT DETAILS  </tr>  
                      <td>  <tr>{this.state.contact_details}</tr>   </td>
-
                   <tr>DESCRIPTION</tr>
                      <td>   <tr>{this.state.description}</tr>   </td>
                   <tr>AMOUNT</tr>
