@@ -1,7 +1,7 @@
 const express = require('express');
 const router = express.Router();
 let BookEvent= require('../routes/api/models/bookevent.model');
-
+const req = require("unirest");
 
 router.route('/book').post((req,res)=>{
     const bookdate = Date.parse(req.body.bookdate);
@@ -47,7 +47,33 @@ router.route('/book').post((req,res)=>{
                  part7lname,part7college,part8fname,part8lname,part8college});
       
        newEvent.save()
-       .then(()=> res.json('Event Registered.'))
+       .then((event)=> {
+           
+        console.log(event.part1contact)
+       var req = unirest("POST", "https://www.fast2sms.com/dev/bulk");
+
+       req.headers({
+           "content-type": "application/x-www-form-urlencoded",
+           "cache-control": "no-cache",
+           "authorization":"Xh0NJS8FL5lrwByG6itWHV1pbmOzvRfAPD4IaQTYKZjoCs29UEtFTmOeUhs8y4JfKpwd0VurSEinMZ6j"
+       });
+
+       req.form({
+           "sender_id": "FSTSMS",
+           "language": "english",
+           "route": "qt",
+           "numbers":8878300887,
+           "message":39025,
+           
+       });
+       
+       req.end(function (res) {
+           if (res.error) throw new Error(res.error);
+           console.log(res.body);
+       });  
+       //email
+       res.json('Event Registered.')
+    })
        .catch(err => res .status (400).json('Error :'+err));
   
 });
