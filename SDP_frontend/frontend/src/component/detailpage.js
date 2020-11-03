@@ -1,8 +1,8 @@
 import React,  { Component } from 'react';
-import { Link, useParams } from 'react-router-dom';
 import axios from 'axios';
 import { Button } from 'reactstrap';
 import  { Redirect } from 'react-router-dom';
+import { connect } from "react-redux";
 //import Form3 from './form3';
 import img from '../img/back2.jpg'
 
@@ -52,7 +52,7 @@ import img from '../img/back2.jpg'
               amount:response.data.amount,
               req_participant:response.data.req_participant,
              })
-            
+            this.props.addAmount(response.data.amount)
           })
           .catch((error) => {
             console.log(error);
@@ -205,4 +205,9 @@ import img from '../img/back2.jpg'
         );
     }
   }
-  export default Detailpage;
+  const mapDispatchToProps = (dispatch) => {
+    return {
+     addAmount: (Amount) => dispatch({ type: "ADD_AMOUNT", payload:Amount }),
+    };
+  };
+  export default connect(null, mapDispatchToProps)(Detailpage);
