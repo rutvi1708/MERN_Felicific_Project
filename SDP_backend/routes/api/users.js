@@ -4,7 +4,7 @@ const bcrypt = require('bcryptjs');
 const jwt = require('jsonwebtoken');
 const config = require('config');
 const { check, validationResult } = require('express-validator');
-const {  emailid, password1 , jwtSecret} = require("../../config/default");
+const {  emailid, password1 , jwtSecret } = require("../../config/default");
 const nodemailer=require('nodemailer');
 const User = require('./models/User');
 router.post(
@@ -74,9 +74,6 @@ router.post(
           id: user.id
         },
       };
-      console.log('beforejwt');
-      
-      console.log('token');
       jwt.sign(
         payload,
         jwtSecret,
@@ -85,26 +82,26 @@ router.post(
           if (err) throw err;
           
           var transporter = nodemailer.createTransport({ service: 'gmail', auth: { user: emailid, pass: password1 },tls: { rejectUnauthorized: false } });
-          console.log('aabb1');
-                
-                var mailOptions = { from: email, to: user.email, subject: 'Account Verification Token', text: 'Hello,\n\n' + 'Please verify your account by clicking the link: \nhttp:\/\/' + req.headers.host + '\/confirmation\/' + token + '.\n' };
-                transporter.sendMail(mailOptions, function (err) {
-                    if (err) { return res.status(500).send({ msg: err.message }); }
-                    console.log('aabb');
-                    res.json({ token });
-                    //res.status(200).send('A verificatioon email has been sent to ' + user.email + '.');
-                });
-          console.log('afterjwt');
-         //User.findById(user.id, (err, doc)=>{
+          // const token = jwt.sign({ _id: user.id }, jwtSecret, {
+          //   expiresIn: "24h",
+          // });
+          // console.log(token);
+          const url = "/api/auth/verify/" + token;
+
+        var mailOptions = { from: email, to: user.email, subject: 'Account Verification Token', text: 'Hello,\n\n' + 'Please verify your account by clicking the link: <a href=http://localhost:5000' +url +'>Click Here</a>'};
+        transporter.sendMail(mailOptions, function (err) {
+            if (err) { return res.status(500).send({ msg: err.message }); }
+
+            res.status(200).send('A verification email has been sent to ' + user.email + '.');
+        });//User.findById(user.id, (err, doc)=>{
            // if(err) throw err;
             
          //})
-        }
-      );
+      })
     } catch (err) {
       console.error(err.message);
       res.status(500).send('Server error');
-      var token = new Token({ _userId: user._id, token: crypto.randomBytes(16).toString('hex') });
+      var token = new Token({ _id: user.id, token: crypto.randomBytes(16).toString('hex') });
       token.save(function(err) {
         if (err) { return res.status(500).send({ msg: err.message }); }
  

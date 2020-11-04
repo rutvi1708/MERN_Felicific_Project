@@ -54,15 +54,23 @@ exports.resendTokenPost = function (req, res, next) {
         if (user.isVerified) return res.status(400).send({ msg: 'This account has already been verified. Please log in.' });
 
         // Create a verification token, save it, and send email
-        var token = new Token({ _userId: user._id, token: crypto.randomBytes(16).toString('hex') });
+        //var token = new Token({ _userId: user._id, token: crypto.randomBytes(16).toString('hex') });
 
         // Save the token
-        token.save(function (err) {
-            if (err) { return res.status(500).send({ msg: err.message }); }
+        //token.save(function (err) {
+          //  if (err) { return res.status(500).send({ msg: err.message }); }
 
             // Send the email
-           var transporter = nodemailer.createTransport({ service: 'gmail', auth: { user: email, pass: password } });
-            var mailOptions = { from: email, to: user.email, subject: 'Account Verification Token', text: 'Hello,\n\n' + 'Please verify your account by clicking the link: \nhttp:\/\/' + req.headers.host + '\/confirmation\/' + token.token + '.\n' };
+            console.log(_userId,_id);
+            const token = jwt.sign({ _id: user.id }, jwtSecret, {
+                expiresIn: "24h",
+              });
+              // console.log(token);
+              const url = "/api/auth/verify/" + token;
+
+            var transporter = nodemailer.createTransport({ service: 'gmail', auth: { user: email, pass: password } });
+
+            var mailOptions = { from: email, to: user.email, subject: 'Account Verification Token', text: 'Hello,\n\n' + 'Please verify your account by clicking the link: <a href=http://localhost:5000' +url +'>Click Here</a>'};
             transporter.sendMail(mailOptions, function (err) {
                 if (err) { return res.status(500).send({ msg: err.message }); }
 
@@ -71,5 +79,5 @@ exports.resendTokenPost = function (req, res, next) {
            // utils.sendMail(req.body.email,"Verify Your Account", "text + ");
         });
 
-    });
-};
+    };
+

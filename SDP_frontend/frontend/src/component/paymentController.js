@@ -1,34 +1,50 @@
 import React,  { Component } from 'react';
 import { Button } from 'reactstrap';
 import { connect } from "react-redux";
-
+import { unirest } from "unirest";
+import axios from 'axios';
 class Checkout extends Component {
 
-  state = {
-    amount: null
-  };
+ 
 componentDidMount() {
+  console.log(localStorage.getItem("bookevent"));
   this.setState({amount:localStorage.getItem("amount")})
+ this.setState({bookevent:JSON.parse(localStorage.getItem("bookevent"))})
 }
-  constructor() {
-    super()
+  constructor(props) {
+    
+    super(props);
+    this.state = {
+      amount: null,
+      bookevent:null,
+    };
     this.openCheckout = this.openCheckout.bind(this);
   }
 
   
-
+  
   openCheckout() {
+  
+    const book = this.state.bookevent;
     let options = {
-      "key": "rzp_live_9l5GYyl4yGK5Pq",
+      "key": "rzp_test_FsJnLD1c8bhlbs",
       "amount": this.state.amount*100, // 2000 paise = INR 20, amount in paisa
-      "name": "Pranav",
+      "name": "Pavan Joshi",
       "description": "Purchase Description",
-      "image": "/your_logo.png",
+      "image": "../img/ddulogo.png",
       "handler": function (response){
-        alert(response.razorpay_payment_id);
+        //alert(response.razorpay_payment_id);
+        console.log(book);      
+        axios.post('http://localhost:5000/routes/bookevent/book', book)
+        .then(res => console.log(res.data))
+
+         window.location = '/payment';
+
+
+
       },
       "prefill": {
-        "name": "Pravnav Joshi",
+        "name": "Pavan Joshi",
         "email": "pbjoshi222@gmail.com"
       },
       "notes": {

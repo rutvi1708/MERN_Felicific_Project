@@ -33,7 +33,7 @@ function Navbar(props) {
                     <Link to="/contact" className="nav-link"> Contact Us  </Link>
                     </li>
                     <li className="navbar-item">
-                    <Link to="/" className="nav-link"> Logout </Link>
+                    <Link to="/" onClick={()=>localStorage.removeItem('token')} className="nav-link"> Logout </Link>
                     </li>
       </ul>
     </nav>

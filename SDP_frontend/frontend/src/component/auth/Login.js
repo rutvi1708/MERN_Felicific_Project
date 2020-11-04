@@ -20,9 +20,9 @@ const Login = ({ login, isAuthenticated }) => {
     login(email, password);
   };
   //Redirect if logged in
-  //if (isAuthenticated) {
-    //return <Redirect to='/home' />;
-  //}
+  if (isAuthenticated) {
+    return <Redirect to='/home' />;
+  }
   return (
     <Fragment>
       <h1 className='large text-primary'>Login</h1>
@@ -49,9 +49,7 @@ const Login = ({ login, isAuthenticated }) => {
             onChange={(e) => onChange(e)}
           />
         </div>
-        <Link to='/home'>
         <input type='submit' className='btn btn-primary' value='Login' />
-        </Link>
       </form>
       <p className='my-1'>
         Don't have an account? <Link to='/register'>Sign Up</Link>
