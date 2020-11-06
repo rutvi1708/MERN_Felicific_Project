@@ -6,14 +6,22 @@ import { connect } from 'react-redux';
 const EmailVerified =() =>{
   return (
     <Fragment>
-      <h1 className='large text-primary'></h1>
-      <p className='lead'>
-        <i className='fas fa-user'></i> Your account has been verified.
-      </p>
       
-      <p className='my-1'>
-        <Link to='/login'>Click here to login</Link>
-      </p>
+
+      <div className="card mx-auto card-border" style={{width: "28em",marginTop:"160px"}}>
+            {/* <img className="card-img-top " src={img} alt="Card image cap"/> */}
+            <div class="card-body">
+            
+              <h3 >
+         Your account has been verified.
+      </h3>
+      <br></br>
+      <h4 style={{textAlign:"center"}}>
+      <Link to='/login' >Click here to login</Link></h4>
+               
+            </div>
+          </div>
+
     </Fragment>
   );
 };

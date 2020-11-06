@@ -24,12 +24,13 @@ router.get('/', auth, async (req, res) => {
 router.get('/verify/:token',async(req,res)=> {
   try {
     const user = jwt.verify(req.params.token, jwtSecret);
-    console.log(user);
+    //console.log(user);
     User.findOneAndUpdate(
       { _id: user.user.id },
       { isVerified: true }
     ).then((founduser) => {
-      console.log(founduser);
+      req.user = user;
+      //console.log(founduser);
       res.redirect("http://localhost:3000/EmailVerified"); });
 
   } catch (e) {

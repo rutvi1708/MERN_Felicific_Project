@@ -4,6 +4,7 @@ let BookEvent = require("../routes/api/models/bookevent.model");
 const unirest = require("unirest");
 
 router.route("/book").post((req, res) => {
+  const userId = req.body.userId;
   const bookdate = Date.parse(req.body.bookdate);
   const name = req.body.eventname;
   const eventname = name.toUpperCase();
@@ -51,6 +52,7 @@ router.route("/book").post((req, res) => {
 
   //console.log(part1contact);
   //console.log(part2contact);
+  //console.log("hello user");
   unirest
     .post("https://www.fast2sms.com/dev/bulk")
     .headers({
@@ -69,7 +71,9 @@ router.route("/book").post((req, res) => {
       message: 39025,
     })
     .then((response) => {
-      console.log(response.body);
+     console.log(response.body);
+      
+     // console.log(userId + "hello user");
     });
   
     res.json("Event Registered.");

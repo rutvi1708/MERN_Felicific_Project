@@ -61,7 +61,7 @@ exports.resendTokenPost = function (req, res, next) {
           //  if (err) { return res.status(500).send({ msg: err.message }); }
 
             // Send the email
-            console.log(_userId,_id);
+            //console.log(_userId,_id);
             const token = jwt.sign({ _id: user.id }, jwtSecret, {
                 expiresIn: "24h",
               });

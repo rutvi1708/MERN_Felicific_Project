@@ -30,7 +30,7 @@ function Navbar(props) {
                     <Link to ="/profile/:id" className="nav-link"> My Profile   </Link>
                     </li> */}
                     <li className="navbar-item"> 
-                    <Link to="/profile" className="nav-link">Your Profile </Link>
+                    <Link to="/profile" className="nav-link">Profile </Link>
                     </li>
                     <li className="navbar-item">
                     <Link to="/contact" className="nav-link"> Contact Us  </Link>

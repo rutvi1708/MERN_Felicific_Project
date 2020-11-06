@@ -64,10 +64,10 @@ router.route("/:id").delete((req, res) => {
          })
          
          var usersList = userList.toString();
-         console.log(usersList);
+         //console.log(usersList);
            var mailOptions = {
            from: emailid,
-           to: "sdpproject7@gmail.com",
+           to: userList,
            subject: "Event Deleted",
            text:
              "Hello,\n\n" +
@@ -75,7 +75,7 @@ router.route("/:id").delete((req, res) => {
          };
         
          transporter.sendMail(mailOptions, function (err) {
-         console.log("snake");
+         //console.log("snake");
        //  if (err) { return res.status(500).send({ msg: err.message }); }
 
        });

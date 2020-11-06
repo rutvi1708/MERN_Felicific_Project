@@ -150,7 +150,9 @@ export default class Form3 extends Component {
   onSubmit(e) {
     e.preventDefault();
 
+
     const bookevent = {
+      token:this.state.token,
       bookdate:this.state.bookdate,
       eventname: this.state.eventname,
       eventdate:this.state.date,
@@ -173,7 +175,8 @@ export default class Form3 extends Component {
     }     
           
     localStorage.setItem("bookevent" ,JSON.stringify( bookevent))
-    console.log(bookevent);
+    //console.log(bookevent);
+
    
     window.location = '/payment';
   }

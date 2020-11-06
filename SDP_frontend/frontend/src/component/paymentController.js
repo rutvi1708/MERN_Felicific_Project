@@ -7,7 +7,8 @@ class Checkout extends Component {
 
  
 componentDidMount() {
-  console.log(localStorage.getItem("bookevent"));
+ // console.log(localStorage.getItem("bookevent"));
+  //this.setState({token:localStorage.getItem("token")})
   this.setState({amount:localStorage.getItem("amount")})
  this.setState({bookevent:JSON.parse(localStorage.getItem("bookevent"))})
 }
@@ -26,6 +27,7 @@ componentDidMount() {
   openCheckout() {
   
     const book = this.state.bookevent;
+   // console.log(book.token);
     let options = {
       "key": "rzp_test_FsJnLD1c8bhlbs",
       "amount": this.state.amount*100, // 2000 paise = INR 20, amount in paisa
@@ -34,7 +36,8 @@ componentDidMount() {
       "image": "../img/ddulogo.png",
       "handler": function (response){
         //alert(response.razorpay_payment_id);
-        console.log(book);      
+        //console.log(book);   
+        
         axios.post('http://localhost:5000/routes/bookevent/book', book)
         .then(res => console.log(res.data))
 
@@ -61,14 +64,15 @@ componentDidMount() {
   
   render () {
     return (
-      <div>
-        <Button onClick={this.openCheckout}>Pay Rs. {this.state.amount}</Button> 
+      <div className="col" style={{textAlign:"center"
+      }}>
+        <Button className="button btn-dark"  onClick={this.openCheckout}>Pay Rs. {this.state.amount}</Button> 
       </div>
     )
   }
 }
 const mapStateToProps = (state) => {
-  console.log(state)
+ // console.log(state)
   return {
     Amount:state.Amount
   };
