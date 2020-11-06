@@ -31,6 +31,7 @@ export default class Form3 extends Component {
     this.state = {
       bookdate:new Date(),
       eventname:'',
+      eventid:'',
       eventdate:'',
       eventtime:'',
       part1fname:'',
@@ -69,6 +70,7 @@ export default class Form3 extends Component {
       .catch((error) => {
         console.log(error);
       })
+     
   }
 
   onChangePart1fname(e) {
@@ -154,6 +156,7 @@ export default class Form3 extends Component {
     const bookevent = {
       bookdate:this.state.bookdate,
       eventname: this.state.eventname,
+      eventid:this.props.match.params.id,
       eventdate:this.state.date,
       eventtime: this.state.time,
       part1fname:this.state.part1fname,

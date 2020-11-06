@@ -79,4 +79,14 @@ router.post(
 );
 router.get('/confirmation', userController.confirmationPost);
 router.get('/resend', userController.resendTokenPost);
+
+router.route('/totaluser').get(function(req, res){
+  User.countDocuments({ }, function(err, result) {
+    if (err) {
+      res.send(err);
+    } else {
+      res.json(result);
+    }
+  });
+});
 module.exports = router;

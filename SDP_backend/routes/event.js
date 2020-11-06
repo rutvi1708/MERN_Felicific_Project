@@ -1,7 +1,34 @@
 const express = require('express');
 const router = express.Router();
 let Event= require('../routes/api/models/event.model');
+//const multer =require('multer');
 
+
+/*const storage =multer.diskStorage({
+   destination:function(req,file,cb){
+   cb(null,'../uploads');
+   },
+   filename:function(req,file,cb){
+    cb(null,Date.now() + file.originalname);
+   }
+});
+const filefilter =(req,file,cb)=>
+{
+   if(file.mimetype === 'image/jpeg' || file.mimetype === 'image/png'){
+   cb(null,true);
+   }
+   else{
+   cb(new Error('image not uploaded'),false);
+   }
+}
+const upload =multer({
+   storage:storage,
+   limits:{
+   fileSize: 1024*1024*5
+   },
+   fileFilter: filefilter
+});
+*/
 router.route('/').get((req,res)=> {
     Event.find()
     .then(events => res.json(events))
@@ -19,10 +46,11 @@ router.route('/add').post((req,res)=>{
      const amount =Number(req.body.amount);
      const req_participant =Number(req.body.req_participant);
      const day=Number(req.body.day);
-   
+     const maxbook= Number(req.body.maxbook);
+     const url =req.body.url;
      
      const newEvent = new Event({eventname,time,location,date,contact_details,description,amount,
-        req_participant,day});
+        req_participant,day,maxbook,url});
        
         newEvent.save()
         .then(()=> res.json('Event Added.'))
@@ -53,6 +81,9 @@ router.route('/:id').get((req,res) => {
        event.amount =Number(req.body.amount);
        event. req_participant =Number(req.body.req_participant);
        event.day=Number(req.body.day);
+       event.maxbook=Number(req.body.maxbook);
+     
+      // event.eventImage=req.file.path;
        event.save()
        .then(() => res.json('Event Updated:'))
        .catch(err => res.status (400).json ('Error:'+err));

@@ -2,7 +2,7 @@ import React,  { Component } from 'react';
 import { Link } from 'react-router-dom';
 import axios from 'axios';
 import { Button } from 'reactstrap';
-import img from  '../img/back2.jpg'
+import img from  '../img/back2.jpg';
 
 
 const Event = props => (
@@ -51,17 +51,19 @@ export default class EventDay1 extends Component{
       }
 
     render(){
+     
         return (
             <div >
             <h1 style={{textAlign:"center",marginTop:"-30px"}}>Day 1 Events</h1>
             <div className="all-events mx-auto" style={{display:"flex",justifyContent:"space-around",flexWrap:"wrap",marginTop:"40px",width:"70%"}}>
-          
+
               {
                 this.state.events.map(currentevent => {
                   if(currentevent.day === 1){
-                    return  <div className="main-card-div" style={{paddingBottom:"2rem"}}>
+
+                    return  <div key={currentevent._id} className="main-card-div" style={{paddingBottom:"2rem"}}>
                                   <div className="card card-border" style={{width: "20rem"}}>
-                                      <img className="card-img-top" src={img} alt="Card image cap"/>
+                                      <img className="card-img-top" src={currentevent.url} alt="Card image cap"/>
                                             <div className="card-body">
                                                 <h4 className="card-title" style={{fontWeight:'bold'}}>{currentevent.eventname}</h4>
                                                 <h6 className="card-text">Time : {currentevent.time}</h6>

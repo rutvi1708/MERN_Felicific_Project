@@ -1,9 +1,17 @@
-import React, { Component } from 'react';
+import React,{useState, useEffect} from 'react';
 import axios from 'axios';
 import DatePicker from 'react-datepicker';
 import "react-datepicker/dist/react-datepicker.css";
+import Back from "../../src/img/form-v9.jpg";
+import '../jquery-ui.css';
+import './addevent.css';
 
+//import React,  { Component } from 'react';
+//import {useHistory} from 'react-router-dom';
+//import Event from '../../../../SDP_backend/routes/api/models/event.model';
+/*
 export default class AddEvent extends Component {
+  
   constructor(props) {
     super(props);
 
@@ -16,6 +24,7 @@ export default class AddEvent extends Component {
     this.onChangeAmount = this.onChangeAmount.bind(this);
     this.onChangeReq_participant = this.onChangeReq_participant.bind(this);
     this.onChangeDay = this.onChangeDay.bind(this);
+   // this.onChangeEventImage = this.onChangeEventImage.bind(this);
     this.onSubmit = this.onSubmit.bind(this);
 
     this.state = {
@@ -28,10 +37,12 @@ export default class AddEvent extends Component {
       amount:0,
       req_participant:1,
       day:'',
+     eventImage:null,
+      url:'',
       error: false,
       errorMessage: "",
-     events: [],
-     filterEvents: []
+      events: [],
+      filterEvents: []
     }
   }
   componentDidMount() {
@@ -43,9 +54,6 @@ export default class AddEvent extends Component {
         console.log(error);
       })
   }
-
-
-
 
   onChangeEventname(e) {
     this.setState({
@@ -102,9 +110,35 @@ export default class AddEvent extends Component {
       day:  e.target.value
     });
   }
+/*
+  onChangeEventImage(e){
+    this.setState({
+    eventImage:e.target.files[0]
+   });
+  }
+ 
+  postImage() {
+    const data= new FormData()
+    data.append("file",this.state.eventImage)
+    data.append('folder','rutvi_event')
+    data.append("upload_preset","eventImages")
+    data.append("cloud_name","rutvi178")
+ 
+    axios.post(" https://api.cloudinary.com/v1_1/rutvi178/image/upload",data)
+          .then(res=>{
+              console.log(res.data.url)
+            this.setState({url: res.data.url});
+            console.log(this.state.url);
+          })
+          .catch(err=>console.log(err))
+
+
+  }
+  
   onSubmit(e) {
     e.preventDefault();
-
+  
+   
     const event = {
       eventname: this.state.eventname,
       time  : this.state.time,
@@ -115,39 +149,180 @@ export default class AddEvent extends Component {
       amount  : this.state.amount,
       req_participant: this.state.req_participant,
       day:this.state.day
+     // url:this.state.url
     }
-
-// const fil=this.state.events.filter(el => el.date === event.date && el.time ===event.time && el.location === event.location)
-  //   console.log(fil);
-  //  if (fil!==null) {
-  //  this.setState({
-   //   error: true,
-   //   errorMessage: "Event already exist"
-       
-  //  });
-  //}
- // else
- // {
-          console.log(event);
+        //  console.log(event.url);
         axios.post('http://localhost:5000/routes/event/add', event)
         .then(res => console.log(res.data))
+        
+        window.location = '/admin';
+  }
        
   //}
-  window.location = '/admin';
-  }
-  render() {
+
+  */
+ 
+function AddEvent() {
+
+  const[eventname,setEventname]=useState('');
+  const[time,setTime]=useState('');
+  const[location,setLocation]=useState('');
+  const[date,setDate]=useState('');
+  const[contact_details,setContactDetails]=useState('');
+  const[description ,setDescription]=useState('');
+  const[amount,setAmount]=useState('');
+  const[req_participant,setReq_participant]=useState('');
+  const[day,setDay]=useState('');
+  const[url,setUrl]=useState('');
+  const[maxbook,setMaxbook]=useState('');
+  const[eventImage,setEventImage]=useState('');
+//  const history=useHistory()
+
+  useEffect(() => {
+
+    if(url){  const config={
+          headers:{
+              "Content-Type": "application/json"
+          }
+      }
+  const databody = JSON.stringify({eventname,time, location,date,contact_details,description,amount,req_participant,day,maxbook,url:url})
+  console.log(databody)
+  
+  axios.post('http://localhost:5000/routes/event/add',databody,config)
+        .then(res=>{
+            if(res){
+              console.log("done")
+              console.log(res.data)
+            //  history.push('/add')
+            }
+        })
+        .catch(err=>{
+                  if(err){
+                      console.log(err)
+                      alert('Error in Adding Accessories !')
+                  }
+              })
+              window.location = '/admin';
+          }
+  }, [url])
+
+  const PostData = ()=>{
+
+      if (!eventname|| !time||!location|| !date|| !description|| !contact_details|| !amount|| !req_participant || !day  ||!maxbook|| !eventImage ){
+          console.log("Enter all the fileds")
+          return
+      }
+
+      const data= new FormData()
+      data.append("file",eventImage)
+      data.append('folder','rutvi_event')
+      data.append("upload_preset","eventImages")
+      data.append("cloud_name","rutvi178")
+ 
+    axios.post(" https://api.cloudinary.com/v1_1/rutvi178/image/upload",data)
+          .then(res=>{
+              console.log(res.data.url)
+                setUrl(res.data.url)})
+            .catch(err=>console.log(err))
+      
+    
+  } 
+
     return (
-    <div>
-      <h3>Create New Event</h3>
-      <form onSubmit={this.onSubmit}>
+<div>
+
+      <div className="main-w3layouts-content">
+        <div className="top-section">
+           <h2 className="sub-hdng-agileits-w3layouts"> .</h2>  
+           <p style={{color:"red"}}>.</p>
+        </div>
+        <div className="w3-agile-login-form">
+          <form>
+          
+            <div className="top-fields-wthree">
+              <div className="input-fields-w3ls">
+                <input type="text" name="Name" placeholder="Event Name" required=""
+                  value={eventname} onChange={e=>setEventname((e.target.value).toUpperCase()) }/>
+              </div>
+              <div className="input-fields-w3ls">
+                <input type="text" name="Location" placeholder="Location" required="" 
+                value={location}
+                 onChange={e=>setLocation((e.target.value).toUpperCase())}/>
+              </div>
+             
+            </div>
+            
+            <div className="top-fields-wthree">
+              <div className="input-fields-w3ls2" style={{color:"#dcdcdc"}}>
+               Date : &nbsp;
+               <DatePicker
+             selected={date}
+             onChange={date=> setDate(date)}
+            />
+              </div>
+            
+              <div className="input-fields-w3ls" style={{color:"#dcdcdc"}} >
+                Time : &nbsp;
+                <input type="time" name="Name" placeholder="Event Time" required=""
+                  onChange={e=>setTime(e.target.value)} />
+              </div>
+             </div>
+
+
+             <div className="top-fields-wthree">
+              <div className="input-fields-w3ls" style={{color:"#dcdcdc",fontfamily: 'Montserrat' }}>
+                Day : &nbsp;
+                <input type="Number"  name="Day" min="1" max="5"required="" 
+                   onChange={e=>setDay(e.target.value)} />
+              </div>
+              <div className="input-fields-w3ls" style={{color:"#dcdcdc"}} >
+                Amount : &nbsp;
+                <input type="Number"  name="Amount" min="0" max="1000"required=""
+                    onChange={e=>setAmount(e.target.value)} />
+              </div>
+            </div>
+
+            <div className="top-fields-wthree">
+              <div className="input-fields-w3ls" style={{color:"#dcdcdc",fontfamily:'sans-serif'}}>
+               Participant : &nbsp;
+                <input type="Number" name="Participant" min="1" max="8" required=""
+                 onChange={e=>setReq_participant(e.target.value)} />
+              </div>
+              <div className="input-fields-w3ls" style={{color:"#dcdcdc"}}>
+                Max Booking : &nbsp;
+                <input type="Number"  min="1" max="100" required="" 
+                    onChange={e=>setMaxbook(e.target.value)} />  
+             </div>
+            </div>
+          
+            <textarea name="desc" placeholder="Description" required=""  
+            onChange={e=>setDescription(e.target.value)}></textarea>
+            <textarea name="Contact" placeholder="Contact Details" required=""
+              onChange={e=>setContactDetails(e.target.value)} ></textarea>
+        
+            <input  type="file" style={{color:"white"}}  onChange={e=>setEventImage(e.target.files[0])}/>
+            <br/>
+            <br/>
+            <div className="text-center">
+            <input type="button" className="btn btn-primary" style={{align:"center"}}value="ADD EVENT"  onClick={()=>PostData()}/>
+            </div>
+          </form>
+        </div>
+      </div>
+</div>
+  
+ 
+  /*  <h3>Create New Event</h3>
+      <form >
         <div className="form-group"> 
           <label>   Event Name : </label>  
 
              <input  type="String"
               required
               className="form-control"
-              value={this.state.eventname}
-              onChange={this.onChangeEventname}
+             value={eventname} onChange={e=>setEventname((e.target.value).toUpperCase())}
+        //   value={this.state.eventname}
+          // onChange={this.onChangeEventname}
               />
         </div>
       
@@ -156,8 +331,10 @@ export default class AddEvent extends Component {
           <input  type="time"
               required
               className="form-control"
-              value={this.state.time }
-              onChange={this.onChangeTime}
+             onChange={e=>setTime(e.target.value)}
+       // value={this.state.time }
+        //onChange={this.onChangeTime}
+
               />
         </div>
         <div className="form-group"> 
@@ -165,46 +342,50 @@ export default class AddEvent extends Component {
           <input  type="text"
               required
               className="form-control"
-              value={this.state.location}
-              onChange={this.onChangeLocation}
+            onChange={e=>setLocation(e.target.value)}
+          // value={this.state.location}
+          // onChange={this.onChangeLocation}
               />
         </div>
         <div className="form-group">
           <label>Date : </label>
           <div>
             <DatePicker
-              selected={this.state.date}
-              onChange={this.onChangeDate}
+             selected={date}
+             onChange={date=> setDate(date)}
             />
           </div>
         </div>
 
         <div className="form-group"> 
-          <label>Contact Details: </label>
+          <label>Contact Details : </label>
           <textarea  type="textarea"
               required
               className="form-control"
-              value={this.state.contact_details}
-              onChange={this.onChangeContact_details}
+            onChange={e=>setContactDetails(e.target.value)}
+          // value={this.state.contact_details}
+            //  onChange={this.onChangeContact_details}
               />
         </div>
         <div className="form-group"> 
-          <label>Description: </label>
+          <label>Description : </label>
           <textarea  type="textarea"
               required
               className="form-control"
-              value={this.state.description}
-              onChange={this.onChangeDescription}
+             onChange={e=>setDescription(e.target.value)}
+          // value={this.state.description}
+          // onChange={this.onChangeDescription}
               />
         </div>
         <div className="form-group">
-          <label>Amount: </label>
+          <label>Amount : </label>
           <input 
               type="number" 
               className="form-control"
               min="0"
-              value={this.state.amount}
-              onChange={this.onChangeAmount}
+            onChange={e=>setAmount(e.target.value)}
+            //  value={this.state.amount}
+             // onChange={this.onChangeAmount}
               />
         </div>
 
@@ -214,9 +395,10 @@ export default class AddEvent extends Component {
               type="number" 
               className="form-control"
               min="1"
-              max="11"
-              value={this.state.req_participant}
-              onChange={this.onChangeReq_participant}
+              max="8"
+             onChange={e=>setReq_participant(e.target.value)}
+            // value={this.state.req_participant}
+            // onChange={this.onChangeReq_participant}
               />
         </div>
 
@@ -227,18 +409,32 @@ export default class AddEvent extends Component {
               className="form-control"
               min="1"
               max="5"
-              value={this.state.day}
-              onChange={this.onChangeDay}
+         
+            onChange={e=>setDay(e.target.value)}    // value={this.state.day}
+            // onChange={this.onChangeDay}
               />
         </div>
-        
         <div className="form-group">
-          <input type="submit"  value="Create Event" className="btn btn-primary" />
-        
+          <label>Max Booking :</label>
+          <input 
+              type="number" 
+              className="form-control"      
+             onChange={e=>setMaxbook(e.target.value)}
+            // value={this.state.day}
+            // onChange={this.onChangeDay}
+              />
+            </div>  
+       <div className="form-group">
+          <input  type="file"  className="form-control"  onChange={e=>setEventImage(e.target.files[0])}/>
         </div>
-      </form>
-
-    </div>
+        
+       <div className="form-group" style={{margin:'10px 30px'}}>
+          <button  size="lg" type="button" className="button" value="Create Event" className="btn btn-primary"
+          onClick={()=>PostData()} />
+        </div>
+     </form>
+</div>
+  */
     )
   }
-}
+  export default AddEvent

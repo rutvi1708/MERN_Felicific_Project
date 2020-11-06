@@ -29,6 +29,9 @@ function Navbar(props) {
                     {/* <li className="navbar-item">
                     <Link to ="/profile/:id" className="nav-link"> My Profile   </Link>
                     </li> */}
+                    <li className="navbar-item"> 
+                    <Link to="/profile" className="nav-link">Your Profile </Link>
+                    </li>
                     <li className="navbar-item">
                     <Link to="/contact" className="nav-link"> Contact Us  </Link>
                     </li>

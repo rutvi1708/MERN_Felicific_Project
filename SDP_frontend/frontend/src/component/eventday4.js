@@ -2,7 +2,7 @@ import React,  { Component } from 'react';
 import { Link } from 'react-router-dom';
 import axios from 'axios';
 import { Button } from 'reactstrap';
-
+import img from  '../img/back2.jpg';
 
 const Event = props => (
     <tr>
@@ -11,11 +11,13 @@ const Event = props => (
       <td>{props.event.location}</td>
       <td>{props.event.date.substring(0,10)}</td>
       <td>
-      <Button color="info">Details</Button>
+      <Link to={"/details/"+props.event._id}>
+      <Button  color="info">Details</Button>
+      </Link>
       </td>
     </tr>
   )
-export default class EventDay1 extends Component{
+export default class EventDay4 extends Component{
     constructor(props) {
         super(props);
     
@@ -45,26 +47,36 @@ export default class EventDay1 extends Component{
           }
         })
       }
-    render(){
+      render(){
         return (
-            <div>
-            <h3>Day 4 Events</h3>
-            <table className="table">
-              <thead className="table-warning">
-                <tr>
-                  
-                  <th>Event Name</th>
-                  <th>Time</th>
-                  <th>Location</th>
-                  <th>Date</th>
-                  <th></th>   
-                  <th></th>
-                </tr>
-              </thead>
-              <tbody>
-                { this.eventList() }
-              </tbody>
-            </table>
+            <div >
+            <h1 style={{textAlign:"center",marginTop:"-30px"}}>Day 4 Events</h1>
+            <div className="all-events mx-auto" style={{display:"flex",justifyContent:"space-around",flexWrap:"wrap",marginTop:"40px",width:"70%"}}>
+          
+              {
+                this.state.events.map(currentevent => {
+                  if(currentevent.day === 4){
+                    return  <div key={currentevent._id}className="main-card-div" style={{paddingBottom:"2rem"}}>
+                                  <div className="card card-border" style={{width: "20rem"}}>
+                                      <img className="card-img-top" src={currentevent.url} alt="Card image cap"/>
+                                            <div className="card-body">
+                                                <h4 className="card-title" style={{fontWeight:'bold'}}>{currentevent.eventname}</h4>
+                                                <h6 className="card-text">Time : {currentevent.time}</h6>
+                                                <h6 className="card-text">Location : {currentevent.location}</h6>
+                                                <h6 className="card-text">Date :{currentevent.date.substring(0,10)}</h6>
+                                                <div className="mx-auto " style={{marginTop:'20px',display:"flex",justifyContent:"space-around",flexWrap:"wrap"}}>
+                                                    <Link   to={"/details/"+currentevent._id}>
+                                                          <Button type="button" className="btn btn-dark" color="info">Details</Button>
+                                                    </Link>
+                                                    
+                                                </div>
+                                            </div>    
+                                  </div>
+                            </div>
+                  }
+                })
+              }
+              </div>
           </div>   
         );
     }

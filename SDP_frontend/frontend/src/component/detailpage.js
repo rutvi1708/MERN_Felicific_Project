@@ -21,6 +21,7 @@ import img from '../img/back2.jpg'
       contact_details:'',
       description:'',
       amount:'',
+      url:'',
       req_participant:1,
       redirect1:false,
       redirect2:false,
@@ -51,6 +52,7 @@ import img from '../img/back2.jpg'
               description: response.data.description,
               amount:response.data.amount,
               req_participant:response.data.req_participant,
+              url:response.data.url
              })
             
           })
@@ -138,7 +140,7 @@ import img from '../img/back2.jpg'
       const ereq_part =this.state.req_participant;
       const data = {ename,etime,edate};
       
-  
+    console.log(this.state.url);
    
   //    <Form3 ename={this.state.eventname}/>
     //let dataevent=[{this.state.eventname,time,date}]
@@ -166,18 +168,20 @@ import img from '../img/back2.jpg'
               </thead>
          
             </table> */}
+          
             <div className="row">
               <div className="col mx-auto">
-                  <img className="card-img-top" style={{padding:'40px'}} src={img} alt="Card image cap"/>
+                  <img className="card-img-top" style={{padding:'40px'}} src={this.state.url} alt="Card image cap"/>
               </div>
               <div className="col">
                     <h1>{this.state.eventname}</h1>
                     <br></br>
-                    <h3>Contact Details</h3>
-                    <h5 style={{marginBottom:'40px'}}>{this.state.contact_details}</h5>
                   
                     <h3>Description</h3>
                     <h5 style={{marginBottom:'40px'}}>{this.state.description}</h5>
+
+                    <h3>Contact Details</h3>
+                    <h5 style={{marginBottom:'40px'}}>{this.state.contact_details}</h5>
                   
                     <div className="row" style={{textAlign:"center",marginLeft:'4px'}}>
 
@@ -198,8 +202,6 @@ import img from '../img/back2.jpg'
           
            {this.renderRedirect()}
             
-           
-
           </div>  
        
         );

@@ -14,6 +14,8 @@ description: {type: String , required: true ,trim: true},
 amount :{type: Number ,required:true},
 req_participant:{type: Number,required:true},
 day:{type: Number,required:true},
+maxbook:{type: Number ,required:true},
+url:{type: String,required:true}
 },     {
    timestamps:true, 
 });

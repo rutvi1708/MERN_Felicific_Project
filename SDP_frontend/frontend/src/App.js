@@ -19,7 +19,6 @@ import EventDay4 from "./component/eventday4";
 import EventDay5 from "./component/eventday5";
 import AdminHome from "./component/adminhome";
 import AddEvent from "./component/addevent";
-import AdminEvent from "./component/admin";
 import EditEvent from "./component/editevent";
 import Details from "./component/detailpage";
 import Form1 from "./component/form/form1";
@@ -31,7 +30,8 @@ import Form6 from "./component/form/form6";
 import Form7 from "./component/form/form7";
 import Form8 from "./component/form/form8";
 import Payment from "./component/payment";
-
+import UserProfile from "./component/userprofile";
+import AdminDetail from "./component/adminDetail";
 
 //Redux
 import { Provider } from 'react-redux';
@@ -71,8 +71,7 @@ const App = () => {
         <Route path="/day4event" component={EventDay4} />
         <Route path="/day5event" component={EventDay5} />
         <Route path="/admin" component={AdminHome} />
-        <Route path="/admin/addevent" component={AddEvent} />
-        <Route path="/admin/adminevent" component={AdminEvent} />
+        <Route path="/addevent" component={AddEvent} />
         <Route path="/editevent/:id" component={EditEvent} />
         <Route path="/details/:id" component={Details} />
         <Route path="/register1/:id" component={Form1}/>
@@ -84,6 +83,8 @@ const App = () => {
         <Route path="/register7/:id" component={Form7}/>
         <Route path="/register8/:id" component={Form8}/>
         <Route path="/payment" component={Payment}/>
+        <Route path="/profile" component={UserProfile}/>
+        <Route path="/adminDetail/:id" component={AdminDetail}/>
       </Router>
     </Provider>
 

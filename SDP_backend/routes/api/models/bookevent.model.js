@@ -7,6 +7,7 @@ const Schema = mongoose.Schema;
 const bookeventSchema = new Schema({
 bookdate:{ type: Date, required: true },
 eventname:{type: String ,required : true },
+eventid:{type: String,required:true},
 eventdate :{ type: Date ,required:true,trim:true },
 eventtime :{type: String, required: true},
 part1fname:{type: String , required: true,trim : true },

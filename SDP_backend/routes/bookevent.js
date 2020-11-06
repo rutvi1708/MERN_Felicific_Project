@@ -1,11 +1,12 @@
 const express = require('express');
 const router = express.Router();
 let BookEvent= require('../routes/api/models/bookevent.model');
-
+let Event= require('../routes/api/models/event.model');
 
 router.route('/book').post((req,res)=>{
     const bookdate = Date.parse(req.body.bookdate);
     const name =req.body.eventname;
+    const eventid=req.body.eventid;
     const eventname=name.toUpperCase();
     const eventdate=Date.parse(req.body.eventdate);
     const eventtime =req.body.eventtime;
@@ -40,7 +41,7 @@ router.route('/book').post((req,res)=>{
     const part8lname = req.body.part8lname;
     const part8college = req.body.part8college;
     
-    const newEvent = new BookEvent({bookdate,eventname,eventdate,eventtime,part1fname,part1lname,part1email,
+    const newEvent = new BookEvent({bookdate,eventname,eventid,eventdate,eventtime,part1fname,part1lname,part1email,
                  part1contact,part1cid,part1college,part2fname,part2lname,part2email,part2contact,part2cid,
                  part2college,part3fname,part3lname,part3college,part4fname,part4lname,part4college,
                  part5fname,part5lname,part5college,part6fname,part6lname,part6college,part7fname,
@@ -51,4 +52,27 @@ router.route('/book').post((req,res)=>{
        .catch(err => res .status (400).json('Error :'+err));
   
 });
+
+router.route('/event/:id').get(function(req, res){
+    BookEvent.findById(req.params.id)
+    .then(Eve => res.json(events))
+    .catch(err => res.status (400).json('Error:'+ err));
+  BookEvent.countDocuments({ eventid: BookEvent.findById(req.params.id)}, function(err, result) {
+    if (err) {
+      res.send(err);
+    } else {
+      res.json(result);
+    }
+  });
+});
+
+router.route('/totalevent').get(function(req, res){
+    BookEvent.countDocuments({ }, function(err, result) {
+      if (err) {
+        res.send(err);
+      } else {
+        res.json(result);
+      }
+    });
+  });
 module.exports= router;
