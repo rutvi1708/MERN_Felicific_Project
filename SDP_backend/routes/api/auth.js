@@ -30,7 +30,7 @@ router.get('/verify/:token',async(req,res)=> {
       { isVerified: true }
     ).then((founduser) => {
       console.log(founduser);
-      res.redirect("http://localhost:3000"); });
+      res.redirect("http://localhost:3000/EmailVerified"); });
 
   } catch (e) {
     console.log(e);

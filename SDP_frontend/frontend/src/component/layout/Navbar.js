@@ -29,11 +29,14 @@ function Navbar(props) {
                     {/* <li className="navbar-item">
                     <Link to ="/profile/:id" className="nav-link"> My Profile   </Link>
                     </li> */}
+                    <li className="navbar-item"> 
+                    <Link to="/profile" className="nav-link">Your Profile </Link>
+                    </li>
                     <li className="navbar-item">
                     <Link to="/contact" className="nav-link"> Contact Us  </Link>
                     </li>
                     <li className="navbar-item">
-                    <Link to="/" onClick={()=>localStorage.removeItem('token')} className="nav-link"> Logout </Link>
+                    <Link to="/" className="nav-link"> Logout </Link>
                     </li>
       </ul>
     </nav>

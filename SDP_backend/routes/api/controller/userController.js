@@ -70,7 +70,11 @@ exports.resendTokenPost = function (req, res, next) {
 
             var transporter = nodemailer.createTransport({ service: 'gmail', auth: { user: email, pass: password } });
 
-            var mailOptions = { from: email, to: user.email, subject: 'Account Verification Token', text: 'Hello,\n\n' + 'Please verify your account by clicking the link: <a href=http://localhost:5000' +url +'>Click Here</a>'};
+            var mailOptions = { 
+                from: email, 
+                to: user.email, 
+                subject: 'Account Verification Token',
+                 text: 'Hello,\n\n' + 'Please verify your account by clicking the link: <a href=http://localhost:5000' +url +'>Click Here</a>'};
             transporter.sendMail(mailOptions, function (err) {
                 if (err) { return res.status(500).send({ msg: err.message }); }
 
