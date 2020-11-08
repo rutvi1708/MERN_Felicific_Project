@@ -2,6 +2,8 @@ const express = require("express");
 const router = express.Router();
 let BookEvent = require("../routes/api/models/bookevent.model");
 const unirest = require("unirest");
+const User = require("./api/models/User");
+const Events = require("./api/models/event.model");
 
 router.route("/book").post((req, res) => {
   const userId = req.body.userId;
@@ -53,6 +55,9 @@ router.route("/book").post((req, res) => {
   //console.log(part1contact);
   //console.log(part2contact);
   //console.log("hello user");
+  Events.find({eventname:eventname}).then((event) => {
+    User.findOneAndUpdate({ _id: userId}, { $addToSet: { registeredEvents: [event._id] } }).exec();
+  })
   unirest
     .post("https://www.fast2sms.com/dev/bulk")
     .headers({
