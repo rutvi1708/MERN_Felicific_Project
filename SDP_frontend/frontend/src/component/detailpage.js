@@ -52,7 +52,7 @@ import img from '../img/back2.jpg'
               description: response.data.description,
               amount:response.data.amount,
               req_participant:response.data.req_participant,
-              //registered: response.data.registered
+              registered: response.data.registered
              })
             this.props.addAmount(response.data.amount)
             localStorage.setItem('amount', response.data.amount);
