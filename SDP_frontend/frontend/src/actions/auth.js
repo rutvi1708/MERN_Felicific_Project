@@ -104,14 +104,13 @@ export const login = (email, password) => async (dispatch) => {
   };
 
   const body = JSON.stringify({ email, password });
-  console.log(body);
+  //console.log(body);
   try {
     const res = await axios.post(
       'http://localhost:5000/api/auth',
       body,
       config
     );
-    console.log(res);
     localStorage.setItem('token', res.data.token);
     dispatch({
       type: LOGIN_SUCCESS,

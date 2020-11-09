@@ -41,7 +41,7 @@ componentDidMount() {
         axios.post('http://localhost:5000/routes/bookevent/book', book)
         .then(res => console.log(res.data))
 
-         window.location = '/payment';
+         window.location = '/home';
 
 
 

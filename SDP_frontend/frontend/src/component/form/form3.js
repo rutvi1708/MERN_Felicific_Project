@@ -175,7 +175,7 @@ export default class Form3 extends Component {
     }     
           
     localStorage.setItem("bookevent" ,JSON.stringify( bookevent))
-    //console.log(bookevent);
+    console.log(bookevent);
 
    
     window.location = '/payment';

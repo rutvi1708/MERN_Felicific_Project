@@ -4,9 +4,10 @@ let BookEvent = require("../routes/api/models/bookevent.model");
 const unirest = require("unirest");
 const User = require("./api/models/User");
 const Events = require("./api/models/event.model");
+const auth = require("./api/middleware/auth");
 
-router.route("/book").post((req, res) => {
-  const userId = req.body.userId;
+router.route("/book").post(auth,(req, res) => {
+  const userId = req.user.id;
   const bookdate = Date.parse(req.body.bookdate);
   const name = req.body.eventname;
   const eventname = name.toUpperCase();
@@ -52,11 +53,12 @@ router.route("/book").post((req, res) => {
   //    newEvent.save()
   //    .then((event)=> {
 
-  //console.log(part1contact);
-  //console.log(part2contact);
-  //console.log("hello user");
+  //console.log(eventname);
   Events.find({eventname:eventname}).then((event) => {
-    User.findOneAndUpdate({ _id: userId}, { $addToSet: { registeredEvents: [event._id] } }).exec();
+   // console.log(event[0]);
+    //console.log(event[0]._id.toString());
+    User.findByIdAndUpdate({ _id: userId}, { $addToSet: { registeredEvents: {id: event[0]._id.toString()} } }).exec();
+    
   })
   unirest
     .post("https://www.fast2sms.com/dev/bulk")
@@ -76,7 +78,7 @@ router.route("/book").post((req, res) => {
       message: 39025,
     })
     .then((response) => {
-     console.log(response.body);
+     //console.log(response.body);
       
      // console.log(userId + "hello user");
     });

@@ -21,16 +21,14 @@ router.get('/', auth, async (req, res) => {
   }
 });
 
-router.post('/displayevent', auth, async (req, res) => {
-    const user = jwt.verify(req.body.token, jwtSecret);
-    const userId = user._id;
-    console.log(user);
+router.get('/displayevent', auth, async (req, res) => {
+    //const user = jwt.verify(req.body.token, jwtSecret);
+    const userId = req.user.id;
+    console.log(req.user.id);
    User.findById(
-     
-    {userId},
-    
+      {_id: userId},
   ).then((founduser) => {
-    res.json({event: founduser.registeredEvent});
+    res.json({event: founduser.registeredEvents});
     //req.user = user;
     //console.log(founduser);
     //res.redirect("http://localhost:3000/EmailVerified"); });

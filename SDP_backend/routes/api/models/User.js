@@ -43,9 +43,11 @@ const UserSchema = new mongoose.Schema({
   registeredEvents: 
     [
       {
-        type: mongoose.Types.ObjectId,
-        ref: 'Event'
+        id: {
+          type: String
+        },
       }
+    
     ]
 });
 const tokenSchema = new mongoose.Schema({

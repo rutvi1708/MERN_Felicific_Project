@@ -29,7 +29,8 @@ import img from '../img/back2.jpg'
       redirect5:false,
       redirect6:false,
       redirect7:false,
-      redirect8:false
+      redirect8:false,
+      registered:false
    };
   // this.rowCallback= this.rowCallback.bind(this);
       //  this.state = {events: []};
@@ -51,6 +52,7 @@ import img from '../img/back2.jpg'
               description: response.data.description,
               amount:response.data.amount,
               req_participant:response.data.req_participant,
+              //registered: response.data.registered
              })
             this.props.addAmount(response.data.amount)
             localStorage.setItem('amount', response.data.amount);
@@ -189,8 +191,8 @@ import img from '../img/back2.jpg'
 
                     </div>
                     
-                    <div style={{marginTop:"20px"}} >
-                        <Button  type="button" className="btn btn-dark btn-lg" style={{width:"20%"}} onClick={()=>this.check(ereq_part)}> Register </Button>
+                    <div style={ !this.state.registered ? {marginTop: "20px"} : { display: "none" } }  >
+                        <Button  type="button" className="btn btn-dark btn-lg"  style={ !this.state.registered ? {width:"20%"} : { display: "none" } } onClick={()=>this.check(ereq_part)}> Register </Button>
                     </div>
               </div>
             </div>
