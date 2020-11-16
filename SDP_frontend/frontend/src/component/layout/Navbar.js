@@ -3,7 +3,8 @@ import { Link } from 'react-router-dom';
 
 function Navbar(props) {
   return (
-    <nav className='navbar bg-dark'>
+    <nav className='navbar navbar-toggleable-sm navbar-trans navbar-inverse'>
+      
       <h1>
         <Link to='/'>
           <i className='fas fa-code'></i> Felicific 2021
@@ -39,6 +40,7 @@ function Navbar(props) {
                     <Link to="/" className="nav-link"> Logout </Link>
                     </li>
       </ul>
+ 
     </nav>
   );
 }

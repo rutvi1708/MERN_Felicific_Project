@@ -3,7 +3,7 @@ import { Link } from 'react-router-dom';
 import { Button} from 'reactstrap';
 import axios from 'axios';
 import pic from '../img/plus.png';
-import eventpic from '../img/event4.jpg';
+
  const Event = props => (
     <tr>
       <td>{props.event.eventname}</td>
@@ -27,8 +27,9 @@ export default class EventList extends Component{
         super(props);
         this.deleteEvent = this.deleteEvent.bind(this);
         this.state = {events: [],
-                      totalevent:0,
-                      totaluser:0};
+                      totaluser:0,
+                      totalbook:0,
+                      totalevent:0 };
         
     }
 
@@ -42,7 +43,7 @@ export default class EventList extends Component{
           })
           axios.get('http://localhost:5000/routes/bookevent/totalevent')
           .then(response=>{
-              this.setState({totalevent:response.data})
+              this.setState({totalbook:response.data})
           })
           .catch((error)=>{
               console.log(error);
@@ -50,6 +51,14 @@ export default class EventList extends Component{
           axios.get('http://localhost:5000/api/auth/totaluser')
           .then(response=>{
               this.setState({totaluser:response.data})
+          })
+          .catch((error)=>{
+              console.log(error);
+          })
+
+          axios.get('http://localhost:5000/routes/event/all')
+          .then(response=>{
+              this.setState({totalevent:response.data})
           })
           .catch((error)=>{
               console.log(error);
@@ -70,23 +79,42 @@ export default class EventList extends Component{
           events: this.state.events.filter(el => el._id !== id)
         })
       }
-    render(){
-     
+    render(){ 
+     /* style={{ backgroundColor: "#F2D7D5" }} */
     
         return (
-            <div style={{ backgroundColor: "#ABEBC6"}}>
-                <h1>Total  Registration for Events: {this.state.totalevent} </h1>
-                <br/>
-                <h1>Total  Registered User: {this.state.totaluser} </h1>
-                <div>
-                  { /* <img src={eventpic} align="left" className="event-image" alt="event image" />  */}
+      <div  >    
+      <div className="card-deck">
+          <div className="card text-center bg-info mb-3" style={{width:"18rem"}}>
+            <div className="card-header"> {this.state.totaluser}</div>
+             <div className="card-body">
+              <p className="card-title"> Registered User</p>
+
+            </div>
+            </div> 
+            
+          <div className="card text-center bg-light mb-3" style={{width:"18rem"}}>
+            <div className="card-header">{this.state.totalevent}</div>
+             <div className="card-body">
+              <p className="card-title"> Events </p>
+
+            </div>
+          </div> 
+          <div className="card text-center bg-info mb-3" style={{width:"18rem"}}>
+            <div className="card-header">{this.state.totalbook}</div>
+             <div className="card-body">
+              <p className="card-title">Total Registration for Events  </p>
+            </div>
+          </div> 
+         </div> 
+          <div>
             <Link to="/addevent">
                    <img src={pic} align="right" className="add-image" alt="Responsive image" /> 
             </Link> 
                     </div>
                     
-            <table className="table">
-              <thead className="thead-light">
+            <table className="table table-info">
+              <thead className="thead-info">
                 <tr>
               
                   <th>Event Name</th>
@@ -100,7 +128,8 @@ export default class EventList extends Component{
                 { this.eventList() }
               </tbody>
             </table>
-          </div>       
+          </div>      
+     
         )
     }
 }

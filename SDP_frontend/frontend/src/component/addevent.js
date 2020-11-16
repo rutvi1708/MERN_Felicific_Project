@@ -214,12 +214,13 @@ function AddEvent() {
       }
 
       const data= new FormData()
-      data.append("file",eventImage)
+      data.append('file',eventImage)
+      data.append('upload_preset','eventImages')
       data.append('folder','rutvi_event')
-      data.append("upload_preset","eventImages")
       data.append("cloud_name","rutvi178")
  
-    axios.post(" https://api.cloudinary.com/v1_1/rutvi178/image/upload",data)
+ 
+    axios.post("https://api.cloudinary.com/v1_1/rutvi178/image/upload",data)
           .then(res=>{
               console.log(res.data.url)
                 setUrl(res.data.url)})
@@ -229,23 +230,27 @@ function AddEvent() {
   } 
 
     return (
-<div>
-
+      /*style={{backgroundColor:"#D5D8DC "}} */
+<div >
       <div className="main-w3layouts-content">
         <div className="top-section">
-           <h2 className="sub-hdng-agileits-w3layouts"> .</h2>  
-           <p style={{color:"red"}}>.</p>
+           <h2 className="sub-hdng-agileits-w3layouts"> NEW EVENT</h2>  
+           <h5>Let's Plan...</h5>
         </div>
         <div className="w3-agile-login-form">
           <form>
           
             <div className="top-fields-wthree">
-              <div className="input-fields-w3ls">
-                <input type="text" name="Name" placeholder="Event Name" required=""
+           
+              <div className="input-fields-w3ls" style={{color:"black"}} >
+                Event Name : &nbsp;
+                <input type="text" name="Name"  required=""
                   value={eventname} onChange={e=>setEventname((e.target.value).toUpperCase()) }/>
-              </div>
-              <div className="input-fields-w3ls">
-                <input type="text" name="Location" placeholder="Location" required="" 
+                </div>  
+          
+                <div className="input-fields-w3ls" style={{color:"black"}} >
+                Location : &nbsp;
+                <input type="text" name="Location" required="" 
                 value={location}
                  onChange={e=>setLocation((e.target.value).toUpperCase())}/>
               </div>
@@ -253,7 +258,7 @@ function AddEvent() {
             </div>
             
             <div className="top-fields-wthree">
-              <div className="input-fields-w3ls2" style={{color:"#dcdcdc"}}>
+              <div className="input-fields-w3ls2" style={{color:"#000000"}}>
                Date : &nbsp;
                <DatePicker
              selected={date}
@@ -261,7 +266,7 @@ function AddEvent() {
             />
               </div>
             
-              <div className="input-fields-w3ls" style={{color:"#dcdcdc"}} >
+              <div className="input-fields-w3ls" style={{color:"black"}} >
                 Time : &nbsp;
                 <input type="time" name="Name" placeholder="Event Time" required=""
                   onChange={e=>setTime(e.target.value)} />
@@ -270,12 +275,12 @@ function AddEvent() {
 
 
              <div className="top-fields-wthree">
-              <div className="input-fields-w3ls" style={{color:"#dcdcdc",fontfamily: 'Montserrat' }}>
+              <div className="input-fields-w3ls" style={{color:"#000",fontfamily: 'Montserrat' }}>
                 Day : &nbsp;
                 <input type="Number"  name="Day" min="1" max="5"required="" 
                    onChange={e=>setDay(e.target.value)} />
               </div>
-              <div className="input-fields-w3ls" style={{color:"#dcdcdc"}} >
+              <div className="input-fields-w3ls" style={{color:"#000"}} >
                 Amount : &nbsp;
                 <input type="Number"  name="Amount" min="0" max="1000"required=""
                     onChange={e=>setAmount(e.target.value)} />
@@ -283,12 +288,12 @@ function AddEvent() {
             </div>
 
             <div className="top-fields-wthree">
-              <div className="input-fields-w3ls" style={{color:"#dcdcdc",fontfamily:'sans-serif'}}>
+              <div className="input-fields-w3ls" style={{color:"#000",fontfamily:'sans-serif'}}>
                Participant : &nbsp;
                 <input type="Number" name="Participant" min="1" max="8" required=""
                  onChange={e=>setReq_participant(e.target.value)} />
               </div>
-              <div className="input-fields-w3ls" style={{color:"#dcdcdc"}}>
+              <div className="input-fields-w3ls" style={{color:"#000000"}}>
                 Max Booking : &nbsp;
                 <input type="Number"  min="1" max="100" required="" 
                     onChange={e=>setMaxbook(e.target.value)} />  
@@ -300,7 +305,7 @@ function AddEvent() {
             <textarea name="Contact" placeholder="Contact Details" required=""
               onChange={e=>setContactDetails(e.target.value)} ></textarea>
         
-            <input  type="file" style={{color:"white"}}  onChange={e=>setEventImage(e.target.files[0])}/>
+            <input  type="file" style={{color:"black"}}  onChange={e=>setEventImage(e.target.files[0])}/>
             <br/>
             <br/>
             <div className="text-center">
@@ -437,4 +442,4 @@ function AddEvent() {
   */
     )
   }
-  export default AddEvent
+  export default AddEvent;

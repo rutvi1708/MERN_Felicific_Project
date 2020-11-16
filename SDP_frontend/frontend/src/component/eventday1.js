@@ -54,7 +54,7 @@ export default class EventDay1 extends Component{
      
         return (
             <div >
-            <h1 style={{textAlign:"center",marginTop:"-30px"}}>Day 1 Events</h1>
+            <h1 style={{textAlign:"center",marginTop:"-30px" ,color:"white"}}>Day 1 Events</h1>
             <div className="all-events mx-auto" style={{display:"flex",justifyContent:"space-around",flexWrap:"wrap",marginTop:"40px",width:"70%"}}>
 
               {

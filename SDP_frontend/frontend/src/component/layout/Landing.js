@@ -3,7 +3,7 @@ import { Link } from 'react-router-dom';
 
 function Landing(props) {
   return (
-    <section className='landing'>
+ 
       <div className='dark-overlay'>
         <div className='landing-inner'>
           <h1 className='x-large'> Felicific </h1>
@@ -19,7 +19,7 @@ function Landing(props) {
           </div>
         </div>
       </div>
-    </section>
+  
   );
 }
 

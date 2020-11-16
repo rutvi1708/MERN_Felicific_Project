@@ -173,29 +173,30 @@ import img from '../img/back2.jpg'
               <div className="col mx-auto">
                   <img className="card-img-top" style={{padding:'40px'}} src={this.state.url} alt="Card image cap"/>
               </div>
-              <div className="col">
+              <div className="col" style={{color:"white"}}>
                     <h1>{this.state.eventname}</h1>
                     <br></br>
                   
                     <h3>Description</h3>
-                    <h5 style={{marginBottom:'40px'}}>{this.state.description}</h5>
+                    <h5 style={{marginBottom:'40px',color:"white"}}>{this.state.description}</h5>
 
                     <h3>Contact Details</h3>
-                    <h5 style={{marginBottom:'40px'}}>{this.state.contact_details}</h5>
+                    <h5 style={{marginBottom:'40px',color:"white"}}>{this.state.contact_details}</h5>
                   
-                    <div className="row" style={{textAlign:"center",marginLeft:'4px'}}>
+                    <div className="row" style={{textAlign:"center",marginLeft:'4px',color:"white"}}>
 
                     <h3>Amount:</h3>
-                    <h5 style={{marginTop:"7px",marginLeft:'6px'}}> {this.state.amount} ₹</h5>
+                    <h5 style={{marginTop:"7px",marginLeft:'6px',color:"white"}}> {this.state.amount} ₹</h5>
 
-                    <h3 style={{marginLeft:'50px'}}>Required participants:</h3>
-                    <h5 style={{marginTop:"7px",marginLeft:'6px'}}>{this.state.req_participant}</h5>
+                    <h3 style={{marginLeft:'50px',color:"white"}}>Required participants:</h3>
+                    <h5 style={{marginTop:"7px",marginLeft:'6px',color:"white"}}>{this.state.req_participant}</h5>
 
                     </div>
                     
                     <div style={{marginTop:"20px"}} >
-                        <Button  type="button" className="btn btn-dark btn-lg" style={{width:"20%"}} onClick={()=>this.check(ereq_part)}> Register </Button>
+                        <Button  type="button" className="btn btn-warning btn-lg" style={{width:"20%"}} onClick={()=>this.check(ereq_part)}> Register </Button>
                     </div>
+                  
               </div>
             </div>
            { console.log(data) } 

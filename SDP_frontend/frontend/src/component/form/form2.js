@@ -149,7 +149,7 @@ export default class Form2 extends Component {
       part2college:this.state.part2college
     
     }
-          localStorage.setItem("bookevent" ,JSON.stringify( bookevent))
+          localStorage.setItem("bookevent" ,JSON.stringify(bookevent))
           console.log(bookevent);
          
           window.location = '/payment';

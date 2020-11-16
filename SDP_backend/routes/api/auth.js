@@ -20,16 +20,41 @@ router.get('/', auth, async (req, res) => {
     res.status(500).send('Server error');
   }
 });
+router.route('/totaluser').get(function(req, res){
+  User.countDocuments({ }, function(err, result) {
+     if (err) {
+       res.send(err);
+     } else {
+       res.json(result);
+     }
+   });
+ });
+
+router.get('/displayevent', auth, async (req, res) => {
+    //const user = jwt.verify(req.body.token, jwtSecret);
+    const userId = req.user.id;
+    console.log(req.user.id);
+   User.findById(
+      {_id: userId},
+  ).then((founduser) => {
+    res.json({event: founduser.registeredEvents});
+    //req.user = user;
+    //console.log(founduser);
+    //res.redirect("http://localhost:3000/EmailVerified"); });
+
+})
+});
 
 router.get('/verify/:token',async(req,res)=> {
   try {
     const user = jwt.verify(req.params.token, jwtSecret);
-    console.log(user);
+    //console.log(user);
     User.findOneAndUpdate(
       { _id: user.user.id },
       { isVerified: true }
     ).then((founduser) => {
-      console.log(founduser);
+      req.user = user;
+      //console.log(founduser);
       res.redirect("http://localhost:3000/EmailVerified"); });
 
   } catch (e) {
@@ -96,14 +121,4 @@ router.post(
 );
 router.get('/confirmation', userController.confirmationPost);
 router.get('/resend', userController.resendTokenPost);
-
-router.route('/totaluser').get(function(req, res){
-  User.countDocuments({ }, function(err, result) {
-    if (err) {
-      res.send(err);
-    } else {
-      res.json(result);
-    }
-  });
-});
 module.exports = router;

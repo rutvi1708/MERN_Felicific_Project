@@ -40,6 +40,15 @@ const UserSchema = new mongoose.Schema({
     type: String,
     required: true,
   },
+  registeredEvents: 
+    [
+      {
+        id: {
+          type: String
+        },
+      }
+    
+    ]
 });
 const tokenSchema = new mongoose.Schema({
   _userId: { type: mongoose.Schema.Types.ObjectId, required: true, ref: 'User' },

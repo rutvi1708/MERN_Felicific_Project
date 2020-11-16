@@ -307,7 +307,7 @@ button {
   z-index: 1;
   width: 100%;
   top: 0;
-  border-bottom: solid 1px var(--primary-color);
+  /*border-bottom: solid 1px var(--primary-color);*/
   opacity: 0.9;
 }
 
@@ -333,7 +333,7 @@ button {
 .landing {
   position: relative;
 
-  background: url('./img/back2.jpg') no-repeat center center/cover;
+  /*background: url('./img/back2.jpg') no-repeat center center/cover; */
   height: 150vh;
 }
 
@@ -624,7 +624,7 @@ button {
 .page-content {
 	width: 100%;
 	margin:  0 auto;
-	background: #4077c8;
+/*	background: #4077c8; */
 	display: flex;
 	display: -webkit-flex;
 	justify-content: center;
@@ -820,4 +820,16 @@ input:-moz-placeholder { /* Firefox 18- */
   height:200px;
    width:500px;
    box-align:"right";
+}
+.bg-admincolor{
+
+  background-image: url("./img/home10.jpg");
+
+  /* Full height */
+  height: 100%;
+
+  /* Center and scale the image nicely */
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
 }

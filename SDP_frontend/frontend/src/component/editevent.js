@@ -163,8 +163,8 @@ export default class EditEvent extends Component {
 
       <div className="main-w3layouts-content">
         <div className="top-section">
-           <h2 className="sub-hdng-agileits-w3layouts"> .</h2>  
-           <p style={{color:"red"}}>.</p>
+    <h1 className="sub-hdng-agileits-w3layouts" style={{alignItems:"center"}}> {this.state.eventname}</h1>  
+     
         </div>
         <div className="w3-agile-login-form">
           <form onSubmit={this.onSubmit}>
@@ -184,14 +184,14 @@ export default class EditEvent extends Component {
             </div>
             
             <div className="top-fields-wthree">
-              <div className="input-fields-w3ls2" style={{color:"#dcdcdc"}}>
+              <div className="input-fields-w3ls2" style={{color:"#000"}}>
                Date : &nbsp;
                <DatePicker
               selected={this.state.date}
               onChange={this.onChangeDate}   />
               </div>
             
-              <div className="input-fields-w3ls" style={{color:"#dcdcdc"}} >
+              <div className="input-fields-w3ls" style={{color:"#000"}} >
                 Time : &nbsp;
                 <input type="time" name="Name" placeholder="Event Time" required=""
                      value={this.state.time }
@@ -201,13 +201,13 @@ export default class EditEvent extends Component {
 
 
              <div className="top-fields-wthree">
-              <div className="input-fields-w3ls" style={{color:"#dcdcdc",fontfamily: 'Montserrat' }}>
+              <div className="input-fields-w3ls" style={{color:"#000",fontfamily: 'Montserrat' }}>
                 Day : &nbsp;
                 <input type="Number"  name="Day" min="1" max="5"required="" 
                           value={this.state.day}
                           onChange={this.onChangeDay} />
               </div>
-              <div className="input-fields-w3ls" style={{color:"#dcdcdc"}} >
+              <div className="input-fields-w3ls" style={{color:"#000"}} >
                 Amount : &nbsp;
                 <input type="Number"  name="Amount" min="0" max="1000"required=""
                          value={this.state.amount}
@@ -216,13 +216,13 @@ export default class EditEvent extends Component {
             </div>
 
             <div className="top-fields-wthree">
-              <div className="input-fields-w3ls" style={{color:"#dcdcdc",fontfamily:'sans-serif'}}>
+              <div className="input-fields-w3ls" style={{color:"#000",fontfamily:'sans-serif'}}>
                Participant : &nbsp;
                 <input type="Number" name="Participant" min="1" max="8" required=""
                value={this.state.req_participant}
                onChange={this.onChangeReq_participant}/>
               </div>
-              <div className="input-fields-w3ls" style={{color:"#dcdcdc"}}>
+              <div className="input-fields-w3ls" style={{color:"#000"}}>
                 Max Booking : &nbsp;
                 <input type="Number"  min="1" max="100" required="" 
                    value={this.state.maxbook}
@@ -230,7 +230,7 @@ export default class EditEvent extends Component {
              </div>
             </div>
             <br/>
-            <div  style={{color:"#dcdcdc"}}>
+            <div  style={{color:"#000"}}>
              Description : &nbsp;  
             <textarea name="desc" placeholder="Description" required=""  
              value={this.state.description}

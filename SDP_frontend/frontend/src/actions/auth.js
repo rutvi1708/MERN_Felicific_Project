@@ -17,6 +17,9 @@ export const loadUser = () => async (dispatch) => {
   }
   try {
     const res = await axios.get('http://localhost:5000/api/auth');
+    console.log(res.data._id);
+    localStorage.setItem("userId",res.data._id);
+    
     dispatch({
       type: USER_LOADED,
      payload: res.data,
@@ -26,6 +29,7 @@ export const loadUser = () => async (dispatch) => {
       type: AUTH_ERROR,
     });
   }
+
 };
 
 //Register USer

@@ -1,108 +1,6 @@
-/*
-Author: W3layout
-Author URL: http://w3layouts.com
-License: Creative Commons Attribution 3.0 Unported
-License URL: http://creativecommons.org/licenses/by/3.0/
-*/
-
-
-/*--reset--*/
 
 
 
-/*
-span,
-applet,
-object,
-iframe,
-
-h2,
-h3,
-h4,
-h5,
-h6,
-p,
-blockquote,
-pre,
-a,
-abbr,
-acronym,
-address,
-big,
-cite,
-code,
-del,
-dfn,
-em,
-img,
-ins,
-kbd,
-q,
-s,
-samp,
-small,
-strike,
-strong,
-sub,
-sup,
-tt,
-var,
-b,
-u,
-dl,
-dt,
-dd,
-ol,
-
-fieldset,
-form,
-label,
-legend,
-table,
-caption,
-tbody,
-tfoot,
-thead,
-tr,
-th,
-td,
-article,
-aside,
-canvas,
-details,
-embed,
-figure,
-figcaption,
-footer,
-header,
-hgroup,
-menu,
-output,
-ruby,
-section,
-summary,
-time,
-mark,
-audio,
-video {
-	margin: 0;
-	padding: 0;
-	border: 0;
-	font-size: 100%;
-	font: inherit;
-	vertical-align: baseline;
-}
-
-article,
-aside,
-details,
-figcaption,
-figure,
-footer,
-header,
-hgroup,
-menu,
-*/
 section {
 	display: block;
 }
@@ -225,17 +123,17 @@ img {
 body {
 	font-family: 'Montserrat', sans-serif;
 	font-size: 100%;
-	background: url(../img/org1.png)no-repeat 0px 0px;  
- /*background: #0c3866;  */
+/*	background: url(../src/img/event3.jpg)no-repeat 0px 0px;  
+ background: #0c3866;  
+ */
 	background-size: cover;
-	color:  #dcdcdc;
+	color:  #fff;
 	-webkit-background-size: cover;
 	-moz-background-size: cover;
 	-o-background-size: cover;
 	-ms-background-size: cover;
 	letter-spacing: 1px;
 	background-attachment: fixed;
-    text-decoration: floralwhite;
 	/*text-align: center;  */
 }
 
@@ -249,8 +147,8 @@ h6 {
 }
 
 .top-section {
-	background: url(../img/BE_events.jpg)no-repeat 0px 0px; 
-  /*	background-color: #ffd877; */
+	background: url(../img/BE_events.jpg)no-repeat 0px 0px;  
+  	background: #EA9EE3; 
 	background-size: cover;
 	-webkit-background-size: cover;
 	-moz-background-size: cover;
@@ -285,7 +183,7 @@ h3.inner-hdng-agileinfo {
 }
 
 .top-section p {
-	color: #FADBD8;
+	color: #fffcfc;
 	letter-spacing: 1px;
 	text-align: left;
 	font-size: 14.5px;
@@ -300,7 +198,7 @@ h3.inner-hdng-agileinfo {
 .main-w3layouts-content {
 	width: 50%;
 	margin: 0 auto;
-	background: rgba(0, 0, 0, 0.77);
+	background:  #EAF2F8;
 	-webkit-box-shadow: 5px 5px 24px 2px rgba(80, 80, 80, 0.42);
 	-moz-box-shadow: 5px 5px 24px 2px rgba(80, 80, 80, 0.42);
 	box-shadow: 5px 5px 24px 2px rgba(80, 80, 80, 0.42);
@@ -314,9 +212,9 @@ select#country {
 	box-sizing: border-box;
 	padding: 10px;
 	border: none;
-	border-bottom: 2px solid rgb(185, 185, 185);
+	border-bottom: 2px solid #000;
 	outline: none;
-	color: #dcdcdc;
+	color: #000;
 	font-size: 15px;
 	font-weight: 500;
 	letter-spacing: 1px;
@@ -352,12 +250,12 @@ select#country option {
 }
 
 .w3-agile-login-form input[type="submit"] {
-	background: #ffd877;
+	background: #ABB2B9 ;
 	color: #000;
 	font-size: 18px;
 	font-weight: 600;
 	text-transform: capitalize;
-	border: 2px solid #ffd877;
+	border: 2px solid #000;
 	width: 100%;
 	outline: none;
 	cursor: pointer;
@@ -431,7 +329,7 @@ select#country option {
 }
 
 .copy-right-w3l p a:hover {
-	color: #ffd877;
+	color: #000;
 	text-decoration: none;
 	transition: 0.5s all;
 	-webkit-transition: 0.5s all;
@@ -444,21 +342,21 @@ select#country option {
 /*-- //login --*/
 
 ::-webkit-input-placeholder {
-	color: #dcdcdc;
+	color: #000;
 }
 
 :-moz-placeholder {
 	/* Firefox 18- */
-	color: #dcdcdc;
+	color: #000;
 }
 
 ::-moz-placeholder {
 	/* Firefox 19+ */
-	color: #dcdcdc;
+	color: #000;
 }
 
 :-ms-input-placeholder {
-	color: #dcdcdc;
+	color: #000;
 }
 
 

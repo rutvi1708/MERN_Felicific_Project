@@ -103,12 +103,12 @@ export default class Form1 extends Component {
       part1college:this.state.part1college
     
     }
-      localStorage.setItem("bookevent" , bookevent);
-          console.log(bookevent);
-          axios.post('http://localhost:5000/routes/bookevent/book', bookevent)
-          .then(res => console.log(res.data))
+    localStorage.setItem("bookevent" ,JSON.stringify(bookevent))
+    console.log(bookevent);
+        //  axios.post('http://localhost:5000/routes/bookevent/book', bookevent)
+        //  .then(res => console.log(res.data))
 
-       //   window.location = '/payment';
+        window.location = '/payment';
   }
   render() {
     return (
