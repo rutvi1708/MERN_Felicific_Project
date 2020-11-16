@@ -10,8 +10,10 @@ import {
 const initialState = {
   token: localStorage.getItem('token'),
   isAuthenticated: null,
+  Amount:null,
   loading: true,
   user: null,
+  
 };
 
 export default function (state = initialState, action) {
@@ -43,6 +45,11 @@ export default function (state = initialState, action) {
         token: null,
         isAuthenticated: false,
         loading: false,
+      };
+     case "ADD_AMOUNT":
+      return {
+        ...state,
+        Amount:payload,
       };
     default:
       return state;

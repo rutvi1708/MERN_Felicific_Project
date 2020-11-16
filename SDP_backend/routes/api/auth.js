@@ -6,7 +6,7 @@ const jwt = require('jsonwebtoken');
 const config = require('config');
 const { check, validationResult } = require('express-validator');
 const userController = require('../api/controller/userController');
-const jwtSecret = require('../../config/default');
+const { jwtSecret } = require('../../config/default');
 
 const User = require('./models/User');
 
@@ -19,6 +19,23 @@ router.get('/', auth, async (req, res) => {
     console.error(err.message);
     res.status(500).send('Server error');
   }
+});
+
+router.get('/verify/:token',async(req,res)=> {
+  try {
+    const user = jwt.verify(req.params.token, jwtSecret);
+    console.log(user);
+    User.findOneAndUpdate(
+      { _id: user.user.id },
+      { isVerified: true }
+    ).then((founduser) => {
+      console.log(founduser);
+      res.redirect("http://localhost:3000/EmailVerified"); });
+
+  } catch (e) {
+    console.log(e);
+  }
+
 });
 
 //desc authenticate user and get token
@@ -37,7 +54,7 @@ router.post(
 
     const { email, password } = req.body;
 
-    try {
+    //try {
       //see if user exists
       let user = await User.findOne({ email });
 
@@ -51,11 +68,11 @@ router.post(
         return res.status(400).json({ errors: [{ msg: 'Invalid User' }] });
       }
        // Make sure the user has been verified
-       if (!user.isVerified){ 
-        return res.status(401).send({ type: 'not-verified', msg: 'Your account has not been verified' });
-       }
+      //  if (!user.isVerified){ 
+      //   return res.status(401).send({ type: 'not-verified', msg: 'Your account has not been verified' });
+      //  }
 
-       res.send({ token: generateToken(user), user: user.toJSON() });
+       //res.send({ token: generateToken(user), user: user.toJSON() });
       const payload = {
         user: {
           id: user.id,
@@ -64,17 +81,17 @@ router.post(
 
       jwt.sign(
         payload,
-        123456,
-        { expiresIn: 3600 },
+        jwtSecret,
+        { expiresIn: 360000 },
         (err, token) => {
           if (err) throw err;
           res.json({ token });
         }
       );
-    } catch (err) {
-      console.error(err.message);
-      res.status(500).send('Server error');
-    }
+    //} catch (err) {
+      //console.error(err.message);
+      //res.status(500).send('Server error');
+    //}
   }
 );
 router.get('/confirmation', userController.confirmationPost);

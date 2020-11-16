@@ -10,7 +10,7 @@ import { loadUser } from './actions/auth';
 import setAuthToken from './utils/setAuthToken';
 import EventList from "./component/event-list";
 import Cultural from "./component/cultural-event";
-import Profile from "./component/profiles/profile";
+import Profile from "./component/profiles/userprofile";
 import Contact from "./component/contact";
 import EventDay1 from "./component/eventday1";
 import EventDay2 from "./component/eventday2";
@@ -32,17 +32,28 @@ import Form8 from "./component/form/form8";
 import Payment from "./component/payment";
 import UserProfile from "./component/userprofile";
 import AdminDetail from "./component/adminDetail";
+//import UserProfile from "./component/profiles/userprofile";
+import EmailVerified from "./component/auth/EmailVerified";
+import EditProfile from "./component/editprofile";
+
 
 //Redux
 import { Provider } from 'react-redux';
 import store from './store';
 import './App.css';
 import { Form } from 'reactstrap';
+import {routerActions} from 'react-router-redux';
+import {UserAuthWrapper} from 'redux-auth-wrapper';
 
 if(localStorage.token) {
     setAuthToken(localStorage.token);
   }
-
+/*  const UserIsAuthenticated = UserAuthWrapper({
+    authSelector: state => state.auth, // how to get the user state
+    predicate: (auth) => auth.isAuthenticated, // function to run against the auth state to determine if authenticated
+    redirectAction: routerActions.replace, // the redux action to dispatch for redirect
+    wrapperDisplayName: 'UserIsAuthenticated' // a nice name for this auth check
+  }); */
 const App = () => {
   useEffect(() => {
     store.dispatch(loadUser());
@@ -85,6 +96,9 @@ const App = () => {
         <Route path="/payment" component={Payment}/>
         <Route path="/profile" component={UserProfile}/>
         <Route path="/adminDetail/:id" component={AdminDetail}/>
+        <Route path="/EmailVerified" component={EmailVerified}/>
+        <Route path ="/edituser" component={EditProfile} />
+
       </Router>
     </Provider>
 

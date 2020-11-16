@@ -197,7 +197,7 @@ export default class Form4 extends Component {
       part4college:this.state.part4college
 
     }
-
+    JSON.parse(localStorage.setItem("bookevent" , bookevent))
           console.log(bookevent);
           axios.post('http://localhost:5000/routes/bookevent/book', bookevent)
           .then(res => console.log(res.data))

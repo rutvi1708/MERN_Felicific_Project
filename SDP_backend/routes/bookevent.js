@@ -1,9 +1,10 @@
-const express = require('express');
+const express = require("express");
 const router = express.Router();
 let BookEvent= require('../routes/api/models/bookevent.model');
 let Event= require('../routes/api/models/event.model');
 
 router.route('/book').post((req,res)=>{
+  //  const userId = req.user.id;
     const bookdate = Date.parse(req.body.bookdate);
     const name =req.body.eventname;
     const eventid=req.body.eventid;
@@ -51,13 +52,43 @@ router.route('/book').post((req,res)=>{
        .then(()=> res.json('Event Registered.'))
        .catch(err => res .status (400).json('Error :'+err));
   
-});
+    /*   Events.find({eventname:eventname}).then((event) => {
+        // console.log(event[0]);
+         //console.log(event[0]._id.toString());
+         User.findByIdAndUpdate({ _id: userId}, { $addToSet: { registeredEvents : {id: event[0]._id.toString()} } }).exec();
+         
+       })
+       unirest
+    .post("https://www.fast2sms.com/dev/bulk")
+    .headers({
+      //Accept: "application/json",
+      //"Content-Type": "application/json",
+      "content-type": "application/x-www-form-urlencoded",
+      "cache-control": "no-cache",
+      authorization:
+        "Xh0NJS8FL5lrwByG6itWHV1pbmOzvRfAPD4IaQTYKZjoCs29UEtFTmOeUhs8y4JfKpwd0VurSEinMZ6j",
+    })
+    .send({
+      sender_id: "FSTSMS",
+      language: "english",
+      route: "qt",
+      numbers: part1contact+","+part2contact,
+      message: 39025,
+    })
+    .then((response) => {
+     //console.log(response.body);
+      
+     // console.log(userId + "hello user");
+    });
+  */
+   // res.json("Event Registered.");
+  });
+     
 
-router.route('/event/:id').get(function(req, res){
-    BookEvent.findById(req.params.id)
-    .then(Eve => res.json(events))
-    .catch(err => res.status (400).json('Error:'+ err));
-  BookEvent.countDocuments({ eventid: BookEvent.findById(req.params.id)}, function(err, result) {
+
+router.route('/event/:eventname').get(function(req, res){
+  
+  BookEvent.countDocuments({eventname:req.params.eventname}, function(err, result) {
     if (err) {
       res.send(err);
     } else {
@@ -67,12 +98,14 @@ router.route('/event/:id').get(function(req, res){
 });
 
 router.route('/totalevent').get(function(req, res){
-    BookEvent.countDocuments({ }, function(err, result) {
+   BookEvent.countDocuments({ }, function(err, result) {
       if (err) {
         res.send(err);
       } else {
         res.json(result);
       }
     });
-  });
+  });  
 module.exports= router;
+
+

@@ -1,8 +1,7 @@
 import  React, { Component } from 'react';
 import axios from 'axios';
 import DatePicker from 'react-datepicker';
-import "react-datepicker/dist/react-datepicker.css";
-
+import "react-datepicker/dist/react-datepicker.css"; 
 import Back from "../../img/form-v9.jpg";
 
 
@@ -174,13 +173,12 @@ export default class Form3 extends Component {
       part3fname:this.state.part3fname,
       part3lname:this.state.part3lname,
       part3college:this.state.part3college
-    }
-
-          console.log(bookevent);
-          axios.post('http://localhost:5000/routes/bookevent/book', bookevent)
-          .then(res => console.log(res.data))
-
-          window.location = '/payment';
+    }     
+          
+    localStorage.setItem("bookevent" ,JSON.stringify( bookevent))
+    console.log(bookevent);
+   
+    window.location = '/payment';
   }
   render() {
     return (

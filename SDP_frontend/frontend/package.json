@@ -19,6 +19,7 @@
     "reactstrap": "^8.6.0",
     "redux-devtools-extension": "^2.13.8",
     "redux-thunk": "^2.3.0",
+    "unirest": "^0.6.0",
     "uuid": "^8.3.0"
   },
   "scripts": {

@@ -243,12 +243,10 @@ export default class Form6 extends Component {
       part6college:this.state.part6college
 
     }
-
-          console.log(bookevent);
-          axios.post('http://localhost:5000/routes/bookevent/book', bookevent)
-          .then(res => console.log(res.data))
-
-          window.location = '/payment';
+    localStorage.setItem("bookevent" ,JSON.stringify( bookevent))
+    console.log(bookevent);
+   
+    window.location = '/payment';
   }
   render() {
     return (

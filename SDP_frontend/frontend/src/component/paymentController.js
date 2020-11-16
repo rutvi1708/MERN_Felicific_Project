@@ -1,106 +1,76 @@
-import React, { Component, Fragment } from "react";
+import React,  { Component } from 'react';
+import { Button } from 'reactstrap';
 import { connect } from "react-redux";
-//import { API } from "../../../../SDP_backend/routes/api";
-import { Redirect } from "react-router";
+import { unirest } from "unirest";
+import axios from 'axios';
+class Checkout extends Component {
 
-class CheckOut extends React.Component {
-  constructor() {
-    super();
+ 
+componentDidMount() {
+  console.log(localStorage.getItem("bookevent"));
+  this.setState({amount:localStorage.getItem("amount")})
+ this.setState({bookevent:JSON.parse(localStorage.getItem("bookevent"))})
+}
+  constructor(props) {
+    
+    super(props);
+    this.state = {
+      amount: null,
+      bookevent:null,
+    };
     this.openCheckout = this.openCheckout.bind(this);
   }
-  state = {
-    userId: "",
-    token: "",
-  };
-  componentDidMount() {
-    const data = JSON.parse(localStorage.getItem("token"));
-    console.log(data);
-    this.setState({ userId: data.user._id });
-    this.setState({ token: data.token });
-  }
 
-  openCheckout(history,userId,emptyCart, token,onlinePaymentOrderBody) {
+  
+  
+  openCheckout() {
+  
+    const book = this.state.bookevent;
     let options = {
-      key: "rzp_test_ldJZM3zfK5SRfV",
-      amount: this.props.total * 100, // 2000 paise = INR 20, amount in paisa
-      name: "Pavan Joshi",
-      description: "Purchase Description",
-      image: "../img/ddulogo.png",
-      handler: function (response) {
-        console.log(JSON.stringify({
-          ...onlinePaymentOrderBody.Order,
-          transaction_id: response.razorpay_payment_id,
-        }));
-        if (response) {
-          fetch( {
-            method: "POST",
-            headers: {
-              Accept: "application/json",
-              "Content-Type": "application/json",
-              Authorization: `Bearer ${token}`,
-            },
-            body: JSON.stringify({
-              Order:{...onlinePaymentOrderBody.Order,
-              transaction_id: response.razorpay_payment_id,
-            payment:"PAID"}
-            }),
-          })
-            .then((response) => {
-              console.log(response);
-              alert("order placed Successfully")
-              emptyCart()
-              return (
-                <Redirect to="/home"/>
-              )
-              
-            })
-            .catch((err) => console.log(err));
-        }
-              alert("order placed Successfully")
-              emptyCart()
-              return (
-                <Redirect to="/home"/>
-              )
-      },
-      prefill: {
-        name: "Pavan Joshi",
-        email: "pbjoshi222@gmail.com",
-        Number: "9427855633",
-        address: "",
-      },
-      notes: {
-        address: "",
-      },
-      theme: {
-        color: "#F37254",
-      },
-    };
+      "key": "rzp_test_FsJnLD1c8bhlbs",
+      "amount": this.state.amount*100, // 2000 paise = INR 20, amount in paisa
+      "name": "Pavan Joshi",
+      "description": "Purchase Description",
+      "image": "../img/ddulogo.png",
+      "handler": function (response){
+        //alert(response.razorpay_payment_id);
+        console.log(book);      
+        axios.post('http://localhost:5000/routes/bookevent/book', book)
+        .then(res => console.log(res.data))
 
+         window.location = '/payment';
+
+
+
+      },
+      "prefill": {
+        "name": "Pavan Joshi",
+        "email": "pbjoshi222@gmail.com"
+      },
+      "notes": {
+        "address": "Hello World"
+      },
+      "theme": {
+        "color": "#F37254"
+      }
+    };
+    
     let rzp = new window.Razorpay(options);
     rzp.open();
   }
-
-  render() {
-    const {userId, token} =this.state
-    const {onlinePaymentOrderBody, emptyCart,history} = this.props
+  
+  render () {
     return (
       <div>
-        <button class="block amber accent-3 center" onClick={()=>this.openCheckout(history,userId,emptyCart,token,onlinePaymentOrderBody)}>
-          Pay Rs. {this.props.total}
-        </button>
+        <Button onClick={this.openCheckout}>Pay Rs. {this.state.amount}</Button> 
       </div>
-    );
+    )
   }
 }
 const mapStateToProps = (state) => {
+  console.log(state)
   return {
-    onlinePaymentOrderBody: state.auth.onlinePaymentOrderBody,
+    Amount:state.Amount
   };
 };
-const mapDispatchToProps = dispatch => {
-  return{
-    emptyCart: () => dispatch({type:'CART_EMPTY'}),
- 
-  }
-}
-export default connect(mapStateToProps,mapDispatchToProps)(CheckOut);
+export default connect(mapStateToProps, null)(Checkout);
