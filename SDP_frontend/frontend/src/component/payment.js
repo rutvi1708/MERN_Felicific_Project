@@ -11,7 +11,7 @@ class Payment extends Component {
             //     <Checkout />
             // </div>
             <div className="card mx-auto card-border " style={{width: "20rem"}}>
-            <img className="card-img-top " src={img} alt="Card image cap"/>
+            <image className="card-img-top " src={img} alt="Card image cap"/>
             <div className="card-body">
               <h2 className="card-title" style={{textAlign:"center",marginBottom:"30px",marginTop:"20px"}}>Make Payment</h2>
               

@@ -9,31 +9,7 @@ const { emailid, password1 } = require("../config/default");
 const auth = require("../routes/api/middleware/auth");
 const { getMaxListeners } = require("./api/models/User");
 
-/*const storage =multer.diskStorage({
-   destination:function(req,file,cb){
-   cb(null,'../uploads');
-   },
-   filename:function(req,file,cb){
-    cb(null,Date.now() + file.originalname);
-   }
-});
-const filefilter =(req,file,cb)=>
-{
-   if(file.mimetype === 'image/jpeg' || file.mimetype === 'image/png'){
-   cb(null,true);
-   }
-   else{
-   cb(new Error('image not uploaded'),false);
-   }
-}
-const upload =multer({
-   storage:storage,
-   limits:{
-   fileSize: 1024*1024*5
-   },
-   fileFilter: filefilter
-});
-*/
+
 router.route('/').get((req,res)=> {
     Event.find()
     .then(events => res.json(events))
@@ -95,11 +71,8 @@ router.route('/:id').get((req,res) => {
 });*/
  });
  
- router.route('/:id').delete((req,res) => {
-    Event.findByIdAndDelete(req.params.id)
-    //.then(() => res.json(' Event Deleted.'))
-   // .catch(err => res.status (400).json('Error:'+ err));
-   .then((event) => {
+ router.route("/:id").delete((req, res) => {
+	Event.findByIdAndDelete(req.params.id).then((event) => {
 		User.find({}, function (err, users) {
 			var transporter = nodemailer.createTransport({
 				service: "gmail",
@@ -131,8 +104,7 @@ router.route('/:id').get((req,res) => {
 			return res.json(" Event Deleted.");
 		});
 	});
- });
-
+});
  router.route('/update/:id').post((req,res) => {
     Event.findById(req.params.id)
     .then(event => {

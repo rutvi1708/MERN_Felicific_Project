@@ -1,7 +1,7 @@
 import React,  { Component } from 'react';
 import { Button } from 'reactstrap';
 import { connect } from "react-redux";
-import { unirest } from "unirest";
+//import { unirest } from "unirest";
 import axios from 'axios';
 class Checkout extends Component {
   constructor(props) {
