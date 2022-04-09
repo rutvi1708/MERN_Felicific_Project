@@ -52,7 +52,15 @@ import img from '../img/back2.jpg'
               description: response.data.description,
               amount:response.data.amount,
               req_participant:response.data.req_participant,
+<<<<<<< HEAD
               url:response.data.url
+=======
+
+              url:response.data.url,
+
+              registered: response.data.registered
+
+>>>>>>> f46e77cf9ffd78b2f274fa30e903712d2e216f3f
              })
             this.props.addAmount(response.data.amount)
             localStorage.setItem('amount', response.data.amount);
@@ -193,8 +201,18 @@ import img from '../img/back2.jpg'
 
                     </div>
                     
+<<<<<<< HEAD
                     <div style={{marginTop:"20px"}} >
                         <Button  type="button" className="btn btn-warning btn-lg" style={{width:"20%"}} onClick={()=>this.check(ereq_part)}> Register </Button>
+=======
+
+                    <div style={{marginTop:"20px"}} >
+                        <Button  type="button" className="btn btn-warning btn-lg" style={{width:"20%"}} onClick={()=>this.check(ereq_part)}> Register </Button>
+
+                    <div style={ !this.state.registered ? {marginTop: "20px"} : { display: "none" } }  >
+                        <Button  type="button" className="btn btn-dark btn-lg"  style={ !this.state.registered ? {width:"20%"} : { display: "none" } } onClick={()=>this.check(ereq_part)}> Register </Button>
+
+>>>>>>> f46e77cf9ffd78b2f274fa30e903712d2e216f3f
                     </div>
                   
               </div>
@@ -204,13 +222,14 @@ import img from '../img/back2.jpg'
            {this.renderRedirect()}
             
           </div>  
-       
+       </div>
         );
-    }
+   } 
   }
   const mapDispatchToProps = (dispatch) => {
     return {
      addAmount: (Amount) => dispatch({ type: "ADD_AMOUNT", payload:Amount }),
     };
   };
+  
   export default connect(null, mapDispatchToProps)(Detailpage);

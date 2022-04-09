@@ -180,12 +180,23 @@ const Register = ({ setAlert, register, isAuthenticated }) => {
           value={age}
           onChange={handleChange}
         >
-          
-          <MenuItem name ='clg' value={'DDIT'}>DDIT</MenuItem>
-          <MenuItem  name ='clg' value={'CHARUSET'}>CHARUSET</MenuItem>
-          <MenuItem  name ='clg' value={'NIRMA'}>NIRMA</MenuItem>
-          <MenuItem  name ='clg' value={'GCET'}>GCET</MenuItem>
-          <MenuItem  name ='clg' value={'ADIT'}>ADIT</MenuItem>
+           <MenuItem  name ='clg' value={'ADPATEL'}>A.D. PATEL INSTITUTE OF TECHNOLOGY </MenuItem>
+           <MenuItem name ='clg' value={'ADANI'}>ADANI INSTITUTE OF INFRASTRUCTURE ENGINEERING</MenuItem>
+          <MenuItem  name ='clg' value={'AHMEDABAD'}>AHMEDABAD INSTITUTE OF TECHNOLOGY</MenuItem>
+          <MenuItem  name ='clg' value={'CHARUSAT'}>CHANDUBHAI S. PATEL INSTITUTE OF TECHNOLOGY, CHANGA</MenuItem>
+          <MenuItem  name ='clg' value={'DARSHAN'}>DARSHAN INSTITUTE OF ENGINEERING & TECHNOLOGY</MenuItem>
+          <MenuItem  name ='clg' value={'DEVANG'}>DEVANG PATEL INSTITUTE OF ADVANCE TECHNOLOGY AND RESEARCH ,CHANGA </MenuItem>
+          <MenuItem  name ='clg' value={'DHIRUBHAI'}>DHIRUBHAI AMBANI INSTITUTE OF INFORMATION AND COMM. TECHNOLOGY</MenuItem>
+          <MenuItem name ='clg' value={'DDU'}>FACULTY OF TECHNOLOGY, DHARMSINH DESAI UNIVERSITY</MenuItem>
+          <MenuItem name ='clg' value={'MSU'}>FACULTY OF TECHNOLOGY & ENGINEERING MSU, VADODARA,</MenuItem>
+          <MenuItem  name ='clg' value={'GHPATEL'}>G.H. PATEL COLLEGE OF ENGINEERING & TECHNOLOGY ,ANAND</MenuItem>
+          <MenuItem name ='clg' value={'GOVERNMENT GANDHINAGAR'}>GOVERNMENT ENGINEERING COLLEGE, GANDHINAGAR</MenuItem>
+          <MenuItem  name ='clg' value={'NIRMA'}>INSTITUTE OF TECHNOLOGY, NIRMA UNIVERSITY</MenuItem>
+          <MenuItem name ='clg' value={'L.D'}>L. D. COLLEGE OF ENGINEERING, AHMEDABAD</MenuItem>
+          <MenuItem  name ='clg' value={'LJ'}>L. J. INSTITUTE OF ENGINEERING & TECHNOLOGY</MenuItem>
+          <MenuItem  name ='clg' value={'VADODARA'}>VADODARA INSTITUTE OF ENGINEERING</MenuItem>
+          <MenuItem name ='clg' value={'VISHVAKARMA'}>VISHWAKARMA GOVERNMENT ENGINEERING COLLEGE, CHANDKHEDA</MenuItem>
+         
         </Select>
       </FormControl>
     </div>
