@@ -17,7 +17,7 @@ componentDidMount() {
  this.setState({bookevent:JSON.parse(localStorage.getItem("bookevent"))})
 }
 
->>>>>>> f46e77cf9ffd78b2f274fa30e903712d2e216f3f
+>>>>>>> 
   constructor(props) {
     
     super(props);
@@ -62,7 +62,7 @@ this.setState({amount:localStorage.getItem("amount")})
 <<<<<<< HEAD
 =======
 
->>>>>>> f46e77cf9ffd78b2f274fa30e903712d2e216f3f
+>>>>>>> 
         axios.post('http://localhost:5000/routes/bookevent/book',book)
         .then(res => console.log(res.data))
 
@@ -73,7 +73,7 @@ this.setState({amount:localStorage.getItem("amount")})
        //  window.location = '/home';
 =======
          window.location = '/home';
->>>>>>> f46e77cf9ffd78b2f274fa30e903712d2e216f3f
+>>>>>>> 
 
 
 
